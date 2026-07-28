@@ -1,4 +1,8 @@
-"""Table discovery for vector PDFs: Camelot detect -> pdfplumber lines/text -> Camelot extract."""
+"""Table discovery for vector PDFs: Camelot detect -> pdfplumber lines/text -> Camelot extract.
+
+Публичный API: find_tables_with_source / find_tables_smart,
+table_looks_like_prose, scan_samples_table_stats.
+"""
 
 from __future__ import annotations
 
@@ -27,6 +31,7 @@ _TABLE_TEXT = {
 
 @dataclass
 class _TableRow:
+    """Строка таблицы: список bbox ячеек (или None для spanned)."""
     cells: list[tuple[float, float, float, float] | None]
 
 
@@ -39,6 +44,7 @@ class TableAdapter:
 
 
 def _read_camelot_page(pdf_path: str | Path, page_num: int, flavor: str) -> Any | None:
+    """Читает одну страницу PDF через Camelot (flavor); None при ошибке."""
     import camelot
 
     try:
@@ -62,10 +68,12 @@ def camelot_page_has_tables(pdf_path: str | Path, page_num: int) -> bool:
 
 
 def _find_tables_lines(page) -> list:
+    """pdfplumber find_tables со стратегией lines."""
     return page.find_tables(_TABLE_LINES)
 
 
 def _find_tables_text(page) -> list:
+    """pdfplumber find_tables со стратегией text."""
     return page.find_tables(_TABLE_TEXT)
 
 
@@ -78,6 +86,7 @@ def _camelot_cell_bbox(
 
 
 def _camelot_table_bbox(table: Any, page_height: float) -> tuple[float, float, float, float]:
+    """Bbox таблицы Camelot в координатах pdfplumber (top-left)."""
     if table._bbox is not None:
         x0, y0, x1, y1 = table._bbox
         return (x0, page_height - y1, x1, page_height - y0)
@@ -101,6 +110,7 @@ def _camelot_table_bbox(table: Any, page_height: float) -> tuple[float, float, f
 
 
 def _camelot_cell_is_covered(cell: Any) -> bool:
+    """True, если ячейка Camelot покрыта span (vspan/hspan) или пустая."""
     if cell.vspan and not cell.top:
         return True
     if cell.hspan and not cell.left:
@@ -111,6 +121,7 @@ def _camelot_cell_is_covered(cell: Any) -> bool:
 
 
 def _camelot_table_to_adapter(table: Any, page_height: float) -> TableAdapter | None:
+    """Конвертирует таблицу Camelot в TableAdapter для build_cells()."""
     if not table.cells:
         return None
 
@@ -128,6 +139,7 @@ def _camelot_table_to_adapter(table: Any, page_height: float) -> TableAdapter | 
 
 
 def _camelot_result_to_adapters(result: Any, page_height: float) -> list[TableAdapter]:
+    """Список TableAdapter из результата Camelot.read_pdf."""
     adapters: list[TableAdapter] = []
     if result is None:
         return adapters
@@ -151,12 +163,14 @@ def find_tables_camelot(
 
 @dataclass
 class PageTableResult:
+    """Результат детекции таблиц на странице: список + источник."""
     tables: list
     source: TableSource
 
 
 @dataclass
 class SamplesTableStats:
+    """Сводка прогона samples/: страницы, источники, тайминги."""
     total_pages: int
     pages_with_tables: int
     pages_lines: int
@@ -173,6 +187,7 @@ def _bbox_intersection_area(
     a: tuple[float, float, float, float],
     b: tuple[float, float, float, float],
 ) -> float:
+    """Площадь пересечения двух bbox (x0, top, x1, bottom)."""
     x0 = max(a[0], b[0])
     y0 = max(a[1], b[1])
     x1 = min(a[2], b[2])
@@ -183,10 +198,12 @@ def _bbox_intersection_area(
 
 
 def _bbox_area(bbox: tuple[float, float, float, float]) -> float:
+    """Площадь bbox; 0 если вырожденный."""
     return max(0.0, bbox[2] - bbox[0]) * max(0.0, bbox[3] - bbox[1])
 
 
 def _word_in_bbox_center(w: dict, bbox: tuple[float, float, float, float]) -> bool:
+    """True, если центр слова попадает внутрь bbox."""
     cx = (w["x0"] + w["x1"]) / 2
     cy = (w["top"] + w["bottom"]) / 2
     x0, top, x1, bottom = bbox
@@ -194,6 +211,7 @@ def _word_in_bbox_center(w: dict, bbox: tuple[float, float, float, float]) -> bo
 
 
 def _table_words(page, table) -> list[dict]:
+    """Слова страницы, чей центр лежит внутри bbox таблицы."""
     bbox = getattr(table, "bbox", None)
     if bbox is None:
         return []
@@ -202,6 +220,7 @@ def _table_words(page, table) -> list[dict]:
 
 
 def _line_groups(words: list[dict], y_tol: float = 3.0) -> list[list[dict]]:
+    """Группирует слова в строки по близости top (y_tol)."""
     if not words:
         return []
     ordered = sorted(words, key=lambda w: (w["top"], w["x0"]))
@@ -217,6 +236,7 @@ def _line_groups(words: list[dict], y_tol: float = 3.0) -> list[list[dict]]:
 
 
 def _line_starts_capital(line: list[dict]) -> bool:
+    """True, если первое слово строки начинается с заглавной/кавычки."""
     if not line:
         return False
     text = line[0].get("text", "").strip()
@@ -227,6 +247,7 @@ def _line_starts_capital(line: list[dict]) -> bool:
 
 
 def _line_looks_numeric(line: list[dict]) -> bool:
+    """True, если текст строки — число (после очистки пробелов)."""
     text = " ".join(w["text"] for w in line).strip()
     if not text:
         return False
@@ -235,6 +256,7 @@ def _line_looks_numeric(line: list[dict]) -> bool:
 
 
 def _line_x_clusters(line: list[dict], gap: float = 18.0) -> int:
+    """Число x-кластеров слов в строке (разрыв > gap)."""
     if not line:
         return 0
     centers = sorted((w["x0"] + w["x1"]) / 2 for w in line)
@@ -246,6 +268,7 @@ def _line_x_clusters(line: list[dict], gap: float = 18.0) -> int:
 
 
 def _words_digit_ratio(words: list[dict]) -> float:
+    """Доля слов, выглядящих как числа."""
     if not words:
         return 0.0
     numeric = 0
@@ -284,6 +307,7 @@ def _table_has_tabular_rows(page, table, min_rows: int = 3) -> bool:
 
 
 def _filter_prose_tables(page, tables: list) -> list:
+    """Убирает псевдо-таблицы, похожие на prose (table_looks_like_prose)."""
     return [t for t in tables if not table_looks_like_prose(page, t)]
 
 
@@ -297,6 +321,30 @@ def _table_grid_one_cell_ratio(table) -> float:
         if sum(1 for c in row.cells if c is not None) <= 1
     )
     return single / len(rows)
+
+
+def _table_has_payment_or_invoice_signals(page, table) -> bool:
+    """Короткие «ломаные» таблицы оплаты/счетов: даты и суммы при слабой lattice-сетке."""
+    words = _table_words(page, table)
+    if len(words) < 12:
+        return False
+    text = " ".join(w.get("text") or "" for w in words)
+    dates = len(re.findall(r"\d{2}\.\d{2}\.\d{4}", text))
+    money = len(re.findall(r"\d[\d\s]*,\d{2}", text))
+    headers = bool(
+        re.search(
+            r"(?i)(?:п/?п|предмет\s+договора|сумма|дата\s+оплаты|наименование|"
+            r"единица\s+измерения|количество|примечание)",
+            text,
+        )
+    )
+    grid_rows = len(getattr(table, "rows", None) or [])
+    # типичный кейс: lines дал 1–4 строки сетки, а word-lines уже «табличные»
+    if grid_rows and grid_rows <= 4 and (dates >= 2 or (headers and (dates >= 1 or money >= 1))):
+        return True
+    if headers and dates >= 2 and money >= 1:
+        return True
+    return False
 
 
 def table_looks_like_prose(page, table) -> bool:
@@ -348,6 +396,20 @@ def table_looks_like_prose(page, table) -> bool:
     if multi_ratio >= 0.28 and numeric_ratio >= 0.12 and word_digit_ratio >= 0.08:
         if _table_has_tabular_rows(page, table, min_rows=4):
             return False
+
+    # Оплата/счёт с датами и суммами — не prose, даже если lattice «схлопнул» строки
+    if _table_has_payment_or_invoice_signals(page, table):
+        return False
+
+    # Крупный текстовый блок с редкими числами (уставы, органы управления) —
+    # не таблица, даже если _table_has_tabular_rows ложно сработал на «п.13.1».
+    if (
+        word_digit_ratio <= 0.08
+        and n >= 12
+        and sentence_ratio >= 0.12
+        and not _table_has_payment_or_invoice_signals(page, table)
+    ):
+        return True
 
     bullet_lines = sum(
         1 for line in lines
@@ -436,6 +498,7 @@ def _line_looks_prose(words: list[dict]) -> bool:
 
 
 def _line_looks_company_row(words: list[dict]) -> bool:
+    """True, если строка — компания (ООО/…) с числами или колонками."""
     text = " ".join(w.get("text", "") for w in words).strip()
     if not re.search(r"(?:ООО|ЗАО|ПАО|АО|ИП)\s", text):
         return False
@@ -450,6 +513,7 @@ def _tabular_region_start_y(words: list[dict], min_rows: int = 3) -> float | Non
     lines = _line_groups(words)
 
     def _include_header_block(idx: int) -> float:
+        """Y верха, включая возможные строки-заголовки над tabular-блоком."""
         start_top = min(w["top"] for w in lines[idx])
         for prev in reversed(lines[:idx]):
             if _line_looks_prose(prev):
@@ -525,6 +589,7 @@ def _uncovered_area_fraction(
     candidate: tuple[float, float, float, float],
     existing: list,
 ) -> float:
+    """Доля площади candidate, не покрытая existing-таблицами."""
     area = _bbox_area(candidate)
     if area <= 0:
         return 0.0
@@ -537,6 +602,7 @@ def _uncovered_area_fraction(
 
 
 def _merge_table_lists(primary: list, extra: list) -> list:
+    """Объединяет списки таблиц и сортирует по (top, left)."""
     if not extra:
         return primary
     combined = list(primary) + extra
@@ -583,10 +649,12 @@ def find_tables_with_source(
 
 
 def find_tables_smart(page, pdf_path: str | Path | None = None, page_num: int | None = None) -> list:
+    """Список таблиц страницы (обёртка над find_tables_with_source)."""
     return find_tables_with_source(page, pdf_path, page_num).tables
 
 
 def _suppress_scan_noise() -> None:
+    """Глушит warnings и шумные логгеры Camelot/pdfminer/PIL."""
     warnings.filterwarnings("ignore")
     for logger_name in ("camelot", "pdfminer", "pdfminer.pdfpage", "PIL", "pypdf"):
         logging.getLogger(logger_name).setLevel(logging.ERROR)

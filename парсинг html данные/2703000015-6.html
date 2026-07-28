@@ -9,6 +9,14 @@ th, td { border: 1px solid #888; padding: 4px 10px; vertical-align: middle; text
 td.num, th.num { text-align: right; }
 h1, h2, h3, p { margin: 0.25em 0 0.5em; font-weight: inherit; font-size: inherit; }
 .doc-section { margin-bottom: 0.75em; }
+.broken-font-warning {
+  border: 1px solid #b00;
+  background: #fff5f5;
+  color: #700;
+  padding: 0.6em 0.9em;
+  margin: 0 0 1em;
+  font-weight: bold;
+}
 </style>
 </head>
 <body>
@@ -21,18 +29,18 @@ h1, h2, h3, p { margin: 0.25em 0 0.5em; font-weight: inherit; font-size: inherit
       <th style="text-align: left; vertical-align: middle;"></th>
       <th style="text-align: left; vertical-align: middle;"><span style="font-family: Arial, Helvetica, sans-serif; font-size: 7.5pt; font-weight: 700">Коды</span></th>
     </tr>
+    <tr>
+      <th style="text-align: left; vertical-align: middle;"><span style="font-family: Arial, Helvetica, sans-serif; font-size: 7.5pt">Форма по ОКУД</span></th>
+      <th style="text-align: right; vertical-align: middle;"><span style="font-family: Arial, Helvetica, sans-serif; font-size: 7.5pt; font-weight: 700">0710001</span></th>
+    </tr>
   </thead>
   <tbody>
-    <tr>
-      <td style="text-align: left; vertical-align: middle;"><span style="font-family: Arial, Helvetica, sans-serif; font-size: 7.5pt">Форма по ОКУД</span></td>
-      <td style="text-align: right; vertical-align: middle;"><span style="font-family: Arial, Helvetica, sans-serif; font-size: 7.5pt; font-weight: 700">0710001</span></td>
-    </tr>
     <tr>
       <td style="text-align: left; vertical-align: middle;"><span style="font-family: Arial, Helvetica, sans-serif; font-size: 7.5pt">Дата (число, месяц, год)</span></td>
       <td style="text-align: right; vertical-align: middle;"><span style="font-family: Arial, Helvetica, sans-serif; font-size: 7.5pt; font-weight: 700">31</span> <span style="font-family: "Times New Roman", Times, serif; font-size: 8.0pt">12</span> <span style="font-family: Arial, Helvetica, sans-serif; font-size: 7.5pt; font-weight: 700">2024</span></td>
     </tr>
     <tr>
-      <td style="text-align: left; vertical-align: middle;"></td>
+      <td style="text-align: left; vertical-align: middle;"><span style="font-family: Arial, Helvetica, sans-serif; font-size: 7.5pt">по ОКПО</span></td>
       <td style="text-align: right; vertical-align: middle;"><span style="font-family: Arial, Helvetica, sans-serif; font-size: 7.5pt; font-weight: 700">08843824</span></td>
     </tr>
     <tr>
@@ -40,7 +48,8 @@ h1, h2, h3, p { margin: 0.25em 0 0.5em; font-weight: inherit; font-size: inherit
       <td style="text-align: right; vertical-align: middle;"><span style="font-family: Arial, Helvetica, sans-serif; font-size: 7.5pt; font-weight: 700">2703000015</span></td>
     </tr>
     <tr>
-      <td style="text-align: left; vertical-align: middle;"></td>
+      <td style="text-align: left; vertical-align: middle;"><span style="font-family: Arial, Helvetica, sans-serif; font-size: 7.5pt">по</span><br>
+<span style="font-family: Arial, Helvetica, sans-serif; font-size: 7.5pt">ОКВЭД 2</span></td>
       <td style="text-align: right; vertical-align: middle;"><span style="font-family: Arial, Helvetica, sans-serif; font-size: 7.5pt; font-weight: 700">30.11</span></td>
     </tr>
     <tr>
@@ -48,31 +57,36 @@ h1, h2, h3, p { margin: 0.25em 0 0.5em; font-weight: inherit; font-size: inherit
       <td style="text-align: right; vertical-align: middle;"><span style="font-family: Arial, Helvetica, sans-serif; font-size: 7.5pt; font-weight: 700">12247</span> <span style="font-family: Arial, Helvetica, sans-serif; font-size: 7.5pt; font-weight: 700">16</span></td>
     </tr>
     <tr>
-      <td style="text-align: left; vertical-align: middle;"></td>
+      <td style="text-align: left; vertical-align: middle;"><span style="font-family: Arial, Helvetica, sans-serif; font-size: 7.5pt">по ОКЕИ</span></td>
       <td style="text-align: right; vertical-align: middle;"><span style="font-family: Arial, Helvetica, sans-serif; font-size: 7.5pt; font-weight: 700">384</span></td>
+    </tr>
+    <tr>
+      <td style="text-align: left; vertical-align: middle;"><span style="font-family: Arial, Helvetica, sans-serif; font-size: 7.5pt">ИНН</span></td>
+      <td style="text-align: right; vertical-align: middle;"><span style="font-family: Arial, Helvetica, sans-serif; font-size: 7.5pt; font-weight: 700">7729744770</span></td>
+    </tr>
+    <tr>
+      <td style="text-align: left; vertical-align: middle;"></td>
+      <td style="text-align: right; vertical-align: middle;"><span style="font-family: Arial, Helvetica, sans-serif; font-size: 7.5pt; font-weight: 700">1137746561787</span></td>
     </tr>
   </tbody>
 </table></div>
-<div class="doc-section"><p style="text-align: center;"><span style="font-family: Arial, Helvetica, sans-serif; font-size: 7.5pt; font-weight: 700">Публичное акционерное общество &quot;АМУРСКИМ СУДОСТРОИТЕЛЬНЫЙ</span><br>
-<span style="font-family: Arial, Helvetica, sans-serif; font-size: 7.5pt">по ОКПО</span><br>
+<div class="doc-section"><p style="text-align: left;"><span style="font-family: Arial, Helvetica, sans-serif; font-size: 7.5pt; font-weight: 700">Публичное акционерное общество &quot;АМУРСКИМ СУДОСТРОИТЕЛЬНЫЙ</span><br>
 <span style="font-family: Arial, Helvetica, sans-serif; font-size: 7.5pt">Организация</span> <span style="font-family: Arial, Helvetica, sans-serif; font-size: 7.5pt; font-weight: 700">ЗАВОД&quot;____________________________________________________________</span><br>
 <span style="font-family: Arial, Helvetica, sans-serif; font-size: 7.5pt">Идентификационный номер налогоплательщика</span><br>
-<span style="font-family: Arial, Helvetica, sans-serif; font-size: 7.5pt">Вид экономической</span> <span style="font-family: Arial, Helvetica, sans-serif; font-size: 7.5pt">по</span><br>
-<span style="font-family: Arial, Helvetica, sans-serif; font-size: 7.5pt">деятельности</span> <span style="font-family: Arial, Helvetica, sans-serif; font-size: 7.5pt">Строительство кораблей, судов и плавучих конструкций________</span> <span style="font-family: Arial, Helvetica, sans-serif; font-size: 7.5pt">ОКВЭД 2</span><br>
+<span style="font-family: Arial, Helvetica, sans-serif; font-size: 7.5pt">Вид экономической</span><br>
+<span style="font-family: Arial, Helvetica, sans-serif; font-size: 7.5pt">деятельности</span> <span style="font-family: Arial, Helvetica, sans-serif; font-size: 7.5pt">Строительство кораблей, судов и плавучих конструкций________</span><br>
 <span style="font-family: Arial, Helvetica, sans-serif; font-size: 7.5pt">Организационно-правовая форма / форма собственности</span><br>
 <span style="font-family: Arial, Helvetica, sans-serif; font-size: 7.5pt">по ОКОПФУОКФС</span><br>
 <span style="font-family: Arial, Helvetica, sans-serif; font-size: 7.5pt; font-weight: 700">Публичные акционерные общества_____/ Частная собственность______</span><br>
-<span style="font-family: Arial, Helvetica, sans-serif; font-size: 7.5pt">Единица измерения:</span> <span style="font-family: Arial, Helvetica, sans-serif; font-size: 7.5pt">в тыс. рублей</span> <span style="font-family: Arial, Helvetica, sans-serif; font-size: 7.5pt">по ОКЕИ</span><br>
+<span style="font-family: Arial, Helvetica, sans-serif; font-size: 7.5pt">Единица измерения:</span> <span style="font-family: Arial, Helvetica, sans-serif; font-size: 7.5pt">в тыс. рублей</span><br>
 <span style="font-family: Arial, Helvetica, sans-serif; font-size: 7.5pt">Местонахождение (адрес)</span><br>
 <span style="font-family: Arial, Helvetica, sans-serif; font-size: 7.5pt; font-weight: 700">6Э1000, Хабаровский край, г Комсомольск-на-Амуре, ул Аллея Труда, д. 1____________</span><br>
 <span style="font-family: Arial, Helvetica, sans-serif; font-size: 7.5pt">Бухгалтерская отчетность подлежит обязательному аудиту</span> <span style="font-family: Arial, Helvetica, sans-serif; font-size: 7.5pt">| х | ДА</span> <span style="font-family: Arial, Helvetica, sans-serif; font-size: 7.5pt">| | НЕТ</span><br>
 <span style="font-family: Arial, Helvetica, sans-serif; font-size: 7.5pt">Наименование аудиторской организации/фамилия, имя, отчество (при наличии) индивидуального аудитора</span><br>
 <span style="font-family: Arial, Helvetica, sans-serif; font-size: 7.5pt; font-weight: 700">Общество с ограниченной ответственностью &quot;Интерком-Аудит&quot;__________________________________</span><br>
 <span style="font-family: Arial, Helvetica, sans-serif; font-size: 7.5pt">Идентификационный номер налогоплательщика аудиторской организации/индивидуального</span><br>
-<span style="font-family: Arial, Helvetica, sans-serif; font-size: 7.5pt">ИНН</span> <span style="font-family: Arial, Helvetica, sans-serif; font-size: 7.5pt; font-weight: 700">7729744770</span><br>
 <span style="font-family: Arial, Helvetica, sans-serif; font-size: 7.5pt">аудитора</span><br>
 <span style="font-family: Arial, Helvetica, sans-serif; font-size: 7.5pt">Основной государственный регистрационный номер аудиторской организации/индивидуального</span> <span style="font-family: Arial, Helvetica, sans-serif; font-size: 7.5pt">ОГРН/</span><br>
-<span style="font-family: Arial, Helvetica, sans-serif; font-size: 7.5pt; font-weight: 700">1137746561787</span><br>
 <span style="font-family: Arial, Helvetica, sans-serif; font-size: 7.5pt">аудитора</span> <span style="font-family: Arial, Helvetica, sans-serif; font-size: 7.5pt">ОГРНИП</span></p></div>
 <div class="doc-section"><table>
   <tbody>

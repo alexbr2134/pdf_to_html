@@ -9,6 +9,14 @@ th, td { border: 1px solid #888; padding: 4px 10px; vertical-align: middle; text
 td.num, th.num { text-align: right; }
 h1, h2, h3, p { margin: 0.25em 0 0.5em; font-weight: inherit; font-size: inherit; }
 .doc-section { margin-bottom: 0.75em; }
+.broken-font-warning {
+  border: 1px solid #b00;
+  background: #fff5f5;
+  color: #700;
+  padding: 0.6em 0.9em;
+  margin: 0 0 1em;
+  font-weight: bold;
+}
 </style>
 </head>
 <body>
@@ -19,48 +27,53 @@ h1, h2, h3, p { margin: 0.25em 0 0.5em; font-weight: inherit; font-size: inherit
       <th colspan="13" style="text-align: left; vertical-align: middle;"><span style="font-family: "Times New Roman", Times, serif; font-size: 6.5pt">2. Финансовые вложения</span><br>
 <span style="font-family: "Times New Roman", Times, serif; font-size: 6.5pt">2.1. Наличие и движение финансовых вложений</span></th>
     </tr>
-  </thead>
-  <tbody>
     <tr>
-      <td rowspan="3" style="text-align: left; vertical-align: middle;"><span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">Наименование показателя</span></td>
-      <td rowspan="3" style="text-align: left; vertical-align: middle;"><span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">Код</span><br>
-<span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">строки</span></td>
-      <td rowspan="3" style="text-align: left; vertical-align: middle;"><span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">Период</span></td>
-      <td colspan="2" style="text-align: left; vertical-align: middle;"><span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">На начало года</span></td>
-      <td colspan="6" style="text-align: left; vertical-align: middle;"><span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">Изменения за период</span></td>
-      <td colspan="2" style="text-align: left; vertical-align: middle;"><span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">На конец периода</span></td>
+      <th style="text-align: left; vertical-align: middle;"><span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">Наименование показателя</span></th>
+      <th rowspan="3" style="text-align: left; vertical-align: middle;"><span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">Код</span><br>
+<span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">строки</span></th>
+      <th rowspan="3" style="text-align: left; vertical-align: middle;"><span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">Период</span></th>
+      <th colspan="2" style="text-align: left; vertical-align: middle;"><span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">На начало года</span></th>
+      <th colspan="6" style="text-align: left; vertical-align: middle;"><span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">Изменения за период</span></th>
+      <th colspan="2" style="text-align: left; vertical-align: middle;"><span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">На конец периода</span></th>
     </tr>
     <tr>
-      <td rowspan="3" style="text-align: left; vertical-align: middle;"><span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">перво-</span><br>
+      <th style="text-align: left; vertical-align: middle;"></th>
+      <th style="text-align: left; vertical-align: middle;"><span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">перво-</span><br>
 <span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">начальная</span><br>
-<span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">стоимость</span></td>
-      <td rowspan="3" style="text-align: left; vertical-align: middle;"><span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">накопленная</span><br>
-<span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">корректировка</span></td>
-      <td rowspan="3" style="text-align: left; vertical-align: middle;"><span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">поступило</span></td>
-      <td colspan="2" style="text-align: left; vertical-align: middle;"><span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">выбыло (погашено)</span></td>
-      <td rowspan="3" style="text-align: left; vertical-align: middle;"><span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">Доведение</span><br>
+<span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">стоимость</span></th>
+      <th rowspan="2" style="text-align: left; vertical-align: middle;"><span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">накопленная</span><br>
+<span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">корректировка</span></th>
+      <th style="text-align: left; vertical-align: middle;"><span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">поступило</span></th>
+      <th colspan="2" style="text-align: left; vertical-align: middle;"><span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">выбыло (погашено)</span></th>
+      <th rowspan="2" style="text-align: left; vertical-align: middle;"><span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">Доведение</span><br>
 <span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">первоначальной</span><br>
 <span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">стоимости до</span><br>
-<span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">номинальной</span></td>
-      <td rowspan="3" style="text-align: left; vertical-align: middle;"><span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">курсовые</span><br>
-<span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">разницы</span></td>
-      <td rowspan="3" style="text-align: left; vertical-align: middle;"><span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">перевод из</span><br>
+<span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">номинальной</span></th>
+      <th rowspan="2" style="text-align: left; vertical-align: middle;"><span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">курсовые</span><br>
+<span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">разницы</span></th>
+      <th rowspan="2" style="text-align: left; vertical-align: middle;"><span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">перевод из</span><br>
 <span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">долгосрочной части</span><br>
 <span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">в краткосрочную и</span><br>
-<span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">обратно</span></td>
-      <td rowspan="3" style="text-align: left; vertical-align: middle;"><span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">перво-</span><br>
+<span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">обратно</span></th>
+      <th style="text-align: left; vertical-align: middle;"><span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">перво-</span><br>
 <span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">начальная</span><br>
-<span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">стоимость</span></td>
-      <td rowspan="3" style="text-align: left; vertical-align: middle;"><span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">накопленная</span><br>
-<span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">корректировка</span></td>
+<span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">стоимость</span></th>
+      <th rowspan="2" style="text-align: left; vertical-align: middle;"><span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">накопленная</span><br>
+<span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">корректировка</span></th>
     </tr>
     <tr>
-      <td rowspan="3" style="text-align: left; vertical-align: middle;"><span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">перво-</span><br>
+      <th style="text-align: left; vertical-align: middle;"></th>
+      <th style="text-align: left; vertical-align: middle;"></th>
+      <th style="text-align: left; vertical-align: middle;"></th>
+      <th style="text-align: left; vertical-align: middle;"><span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">перво-</span><br>
 <span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">начальная</span><br>
-<span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">стоимость</span></td>
-      <td rowspan="3" style="text-align: left; vertical-align: middle;"><span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">накопленная</span><br>
-<span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">корректировка</span></td>
+<span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">стоимость</span></th>
+      <th style="text-align: left; vertical-align: middle;"><span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">накопленная</span><br>
+<span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">корректировка</span></th>
+      <th style="text-align: left; vertical-align: middle;"></th>
     </tr>
+  </thead>
+  <tbody>
     <tr>
       <td style="text-align: left; vertical-align: middle;"><span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">1</span></td>
       <td style="text-align: right; vertical-align: middle;"><span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">2</span></td>
@@ -151,18 +164,18 @@ h1, h2, h3, p { margin: 0.25em 0 0.5em; font-weight: inherit; font-size: inherit
       <td style="text-align: left; vertical-align: middle;"><span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">-</span></td>
     </tr>
     <tr>
-      <td rowspan="2" style="text-align: left; vertical-align: middle;"><span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">53121</span></td>
-      <td rowspan="2" style="text-align: left; vertical-align: middle;"><span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">2023 г.</span></td>
-      <td rowspan="2" style="text-align: right; vertical-align: middle;"><span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">3 509 607</span></td>
-      <td rowspan="2" style="text-align: left; vertical-align: middle;"><span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">-</span></td>
-      <td rowspan="2" style="text-align: left; vertical-align: middle;"><span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">-</span></td>
-      <td rowspan="2" style="text-align: right; vertical-align: middle;"><span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">(3 509 607)</span></td>
-      <td rowspan="2" style="text-align: left; vertical-align: middle;"><span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">-</span></td>
-      <td rowspan="2" style="text-align: left; vertical-align: middle;"><span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">х</span></td>
-      <td rowspan="2" style="text-align: left; vertical-align: middle;"><span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">-</span></td>
-      <td rowspan="2" style="text-align: left; vertical-align: middle;"><span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">-</span></td>
-      <td rowspan="2" style="text-align: left; vertical-align: middle;"><span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">-</span></td>
-      <td rowspan="2" style="text-align: left; vertical-align: middle;"><span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">-</span></td>
+      <td style="text-align: left; vertical-align: middle;"><span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">53121</span></td>
+      <td style="text-align: left; vertical-align: middle;"><span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">2023 г.</span></td>
+      <td style="text-align: right; vertical-align: middle;"><span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">3 509 607</span></td>
+      <td style="text-align: left; vertical-align: middle;"><span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">-</span></td>
+      <td style="text-align: left; vertical-align: middle;"><span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">-</span></td>
+      <td style="text-align: right; vertical-align: middle;"><span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">(3 509 607)</span></td>
+      <td style="text-align: left; vertical-align: middle;"><span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">-</span></td>
+      <td style="text-align: left; vertical-align: middle;"><span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">х</span></td>
+      <td style="text-align: left; vertical-align: middle;"><span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">-</span></td>
+      <td style="text-align: left; vertical-align: middle;"><span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">-</span></td>
+      <td style="text-align: left; vertical-align: middle;"><span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">-</span></td>
+      <td style="text-align: left; vertical-align: middle;"><span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">-</span></td>
     </tr>
     <tr>
       <td rowspan="2" style="text-align: left; vertical-align: middle;"><span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">Вложения в уставные капиталы других организаций</span></td>
@@ -251,8 +264,12 @@ h1, h2, h3, p { margin: 0.25em 0 0.5em; font-weight: inherit; font-size: inherit
       <td style="text-align: right; vertical-align: middle;"><span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">25 913 886</span></td>
       <td style="text-align: left; vertical-align: middle;"><span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">-</span></td>
     </tr>
+  </tbody>
+</table></div>
+<div class="doc-section"><table>
+  <tbody>
     <tr>
-      <td rowspan="3" style="text-align: left; vertical-align: middle;"><span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">Наименование показателя</span></td>
+      <td style="text-align: left; vertical-align: middle;"><span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">Наименование показателя</span></td>
       <td rowspan="3" style="text-align: left; vertical-align: middle;"><span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">Код</span><br>
 <span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">строки</span></td>
       <td rowspan="3" style="text-align: left; vertical-align: middle;"><span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">Период</span></td>
@@ -261,35 +278,40 @@ h1, h2, h3, p { margin: 0.25em 0 0.5em; font-weight: inherit; font-size: inherit
       <td colspan="2" style="text-align: left; vertical-align: middle;"><span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">На конец периода</span></td>
     </tr>
     <tr>
-      <td rowspan="3" style="text-align: left; vertical-align: middle;"><span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">перво-</span><br>
+      <td style="text-align: left; vertical-align: middle;"></td>
+      <td style="text-align: left; vertical-align: middle;"><span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">перво-</span><br>
 <span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">начальная</span><br>
 <span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">стоимость</span></td>
-      <td rowspan="3" style="text-align: left; vertical-align: middle;"><span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">накопленная</span><br>
+      <td rowspan="2" style="text-align: left; vertical-align: middle;"><span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">накопленная</span><br>
 <span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">корректировка</span></td>
-      <td rowspan="3" style="text-align: left; vertical-align: middle;"><span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">поступило</span></td>
+      <td style="text-align: left; vertical-align: middle;"><span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">поступило</span></td>
       <td colspan="2" style="text-align: left; vertical-align: middle;"><span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">выбыло (погашено)</span></td>
-      <td rowspan="3" style="text-align: left; vertical-align: middle;"><span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">Доведение</span><br>
+      <td rowspan="2" style="text-align: left; vertical-align: middle;"><span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">Доведение</span><br>
 <span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">первоначальной</span><br>
 <span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">стоимости до</span><br>
 <span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">номинальной</span></td>
-      <td rowspan="3" style="text-align: left; vertical-align: middle;"><span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">курсовые</span><br>
+      <td rowspan="2" style="text-align: left; vertical-align: middle;"><span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">курсовые</span><br>
 <span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">разницы</span></td>
-      <td rowspan="3" style="text-align: left; vertical-align: middle;"><span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">перевод из</span><br>
+      <td rowspan="2" style="text-align: left; vertical-align: middle;"><span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">перевод из</span><br>
 <span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">долгосрочной части</span><br>
 <span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">в краткосрочную и</span><br>
 <span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">обратно</span></td>
-      <td rowspan="3" style="text-align: left; vertical-align: middle;"><span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">перво-</span><br>
+      <td style="text-align: left; vertical-align: middle;"><span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">перво-</span><br>
 <span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">начальная</span><br>
 <span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">стоимость</span></td>
-      <td rowspan="3" style="text-align: left; vertical-align: middle;"><span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">накопленная</span><br>
+      <td rowspan="2" style="text-align: left; vertical-align: middle;"><span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">накопленная</span><br>
 <span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">корректировка</span></td>
     </tr>
     <tr>
-      <td rowspan="3" style="text-align: left; vertical-align: middle;"><span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">перво-</span><br>
+      <td style="text-align: left; vertical-align: middle;"></td>
+      <td style="text-align: left; vertical-align: middle;"></td>
+      <td style="text-align: left; vertical-align: middle;"></td>
+      <td style="text-align: left; vertical-align: middle;"><span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">перво-</span><br>
 <span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">начальная</span><br>
 <span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">стоимость</span></td>
-      <td rowspan="3" style="text-align: left; vertical-align: middle;"><span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">накопленная</span><br>
+      <td style="text-align: left; vertical-align: middle;"><span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">накопленная</span><br>
 <span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">корректировка</span></td>
+      <td style="text-align: left; vertical-align: middle;"></td>
     </tr>
     <tr>
       <td style="text-align: left; vertical-align: middle;"><span style="font-family: "Times New Roman", Times, serif; font-size: 5.9pt">1</span></td>
