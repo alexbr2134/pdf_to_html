@@ -17,6 +17,15 @@ h1, h2, h3, p { margin: 0.25em 0 0.5em; font-weight: inherit; font-size: inherit
   margin: 0 0 1em;
   font-weight: bold;
 }
+.page-rejected {
+  border: 1px solid #a60;
+  background: #fff8f0;
+  color: #530;
+  padding: 0.75em 1em;
+  margin: 0 0 1em;
+}
+.page-rejected ul { margin: 0.4em 0 0 1.2em; }
+.page[data-rejected="true"] { opacity: 0.95; }
 </style>
 </head>
 <body>
@@ -118,8 +127,8 @@ h1, h2, h3, p { margin: 0.25em 0 0.5em; font-weight: inherit; font-size: inherit
 <span style="font-family: Arial, Helvetica, sans-serif; font-size: 10.0pt">21906099088)</span></p></div>
 <div class="doc-section"><h3 style="text-align: right;"><span style="font-family: "Times New Roman", Times, serif; font-size: 12.0pt">2</span></h3></div>
 </section>
-<section class="page" data-page="5">
-
+<section class="page" data-page="5" data-rejected="true" data-reasons="image_only_scan">
+<div class="page-rejected" role="status" data-rejected="true" data-reasons="image_only_scan"><p><strong>Страница 5 отсеяна</strong> — не пригодна для smart-конвертации (будет передана другой модели).</p><ul><li>страница почти без текстового слоя (скан/картинка)</li></ul></div>
 </section>
 <section class="page" data-page="6">
 <div class="doc-section"><p style="text-align: center;"><span style="font-family: Arial, Helvetica, sans-serif; font-size: 8.0pt; font-weight: 700">Группа Газпром нефть</span><br>
