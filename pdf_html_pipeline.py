@@ -1,9 +1,4 @@
-"""
-Smart PDF→HTML pipeline: cells, grids, page/document assembly.
 
-Извлечено из ``pdf_to_html_smart.ipynb`` как обычный Python-модуль
-(без загрузки ноутбука в runtime). Публичная точка входа — ``pdf_to_html.py``.
-"""
 
 from __future__ import annotations
 
@@ -53,7 +48,7 @@ class Cell:
     rowspan: int = 1
     colspan: int = 1
     covered: bool = False
-    is_placeholder: bool = False  # пустая ячейка сетки (слот есть, текста нет)
+    is_placeholder: bool = False  
 
     @property
     def cell_center_x(self) -> float | None:
