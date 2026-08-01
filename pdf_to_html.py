@@ -26,14 +26,10 @@
     - ``unmarked_table_lines`` — линии с растра + тяжёлая сетка после обработки
 
 Реализация
-    Сборка страниц — ``pdf_html_pipeline.py`` (обычный Python-модуль).
+    Сборка страниц — ``pdf_html_pipeline.py``.
     Детект таблиц / роутинг / типы — ``pdf_table_engine.py``,
     ``page_suitability.py``, ``pdf_doc_types.py``.
-    Ноутбук ``pdf_to_html_smart.ipynb`` в runtime не используется.
 
-Пересборка пайплайна из ноутбука (только если правили стенд)::
-
-    python scripts/extract_pipeline.py
 """
 
 from __future__ import annotations
