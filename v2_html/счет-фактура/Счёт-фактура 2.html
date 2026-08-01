@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"><title>Счёт-фактура 2</title>
+<style>
+body { font-family: "Times New Roman", Times, serif; font-size: 11pt; line-height: 1.35; margin: 2em; }
+table { border-collapse: collapse; margin: 0.6em 0 1em; width: auto; max-width: 100%; }
+th, td { border: 1px solid #888; padding: 4px 10px; vertical-align: middle; text-align: left; }
+td.num, th.num { text-align: right; }
+h1, h2, h3, p { margin: 0.25em 0 0.5em; font-weight: inherit; font-size: inherit; }
+.doc-section { margin-bottom: 0.75em; }
+.broken-font-warning {
+  border: 1px solid #b00;
+  background: #fff5f5;
+  color: #700;
+  padding: 0.6em 0.9em;
+  margin: 0 0 1em;
+  font-weight: bold;
+}
+.page-rejected {
+  border: 1px solid #a60;
+  background: #fff8f0;
+  color: #530;
+  padding: 0.75em 1em;
+  margin: 0 0 1em;
+}
+.page-rejected ul { margin: 0.4em 0 0 1.2em; }
+.page[data-rejected="true"] { opacity: 0.95; }
+</style>
+</head>
+<body>
+<section class="page" data-page="1" data-doc-type="invoice_sf">
+<div class="doc-section"><p style="text-align: center;"><span style="font-family: Arial, Helvetica, sans-serif; font-size: 6.4pt">Счет-фактура №</span> <span style="font-family: Arial, Helvetica, sans-serif; font-size: 6.4pt">от</span> <span style="font-family: Arial, Helvetica, sans-serif; font-size: 5.7pt">(1)</span> <span style="font-family: Arial, Helvetica, sans-serif; font-size: 5.7pt">Приложение № 1 к постановлению Правительства Российской Федерации от 26 декабря 2011 г. № 1137</span><br>
+<span style="font-family: Arial, Helvetica, sans-serif; font-size: 6.4pt">Исправление №</span> <span style="font-family: Arial, Helvetica, sans-serif; font-size: 7.1pt">--</span> <span style="font-family: Arial, Helvetica, sans-serif; font-size: 6.4pt">от</span> <span style="font-family: Arial, Helvetica, sans-serif; font-size: 7.1pt">--</span> <span style="font-family: Arial, Helvetica, sans-serif; font-size: 5.7pt">(1а)</span> <span style="font-family: Arial, Helvetica, sans-serif; font-size: 5.7pt">(в редакции постановления Правительства Российской Федерации от 2 апреля 2021 г. № 534)</span><br>
+<span style="font-family: Arial, Helvetica, sans-serif; font-size: 6.4pt; font-weight: 700">Продавец:</span> <span style="font-family: Arial, Helvetica, sans-serif; font-size: 5.7pt">(2)</span> <span style="font-family: Arial, Helvetica, sans-serif; font-size: 6.4pt; font-weight: 700">Покупатель:</span> <span style="font-family: Arial, Helvetica, sans-serif; font-size: 6.4pt">ООО «ГАЗПРОМБАНК АВТОЛИЗИНГ»</span> <span style="font-family: Arial, Helvetica, sans-serif; font-size: 5.7pt">(6)</span><br>
+<span style="font-family: Arial, Helvetica, sans-serif; font-size: 6.4pt">117342, Город Москва, вн.тер. г. Муниципальный Округ Коньково, ул</span><br>
+<span style="font-family: Arial, Helvetica, sans-serif; font-size: 6.4pt">Адрес:</span> <span style="font-family: Arial, Helvetica, sans-serif; font-size: 5.7pt">(2а)</span> <span style="font-family: Arial, Helvetica, sans-serif; font-size: 6.4pt">Адрес:</span> <span style="font-family: Arial, Helvetica, sans-serif; font-size: 6.4pt">Миклухо-Маклая, дом 40, помещение 2/1</span> <span style="font-family: Arial, Helvetica, sans-serif; font-size: 5.7pt">(6а)</span><br>
+<span style="font-family: Arial, Helvetica, sans-serif; font-size: 6.4pt">ИНН/КПП продавца:</span> <span style="font-family: Arial, Helvetica, sans-serif; font-size: 5.7pt">(2б)</span> <span style="font-family: Arial, Helvetica, sans-serif; font-size: 6.4pt">ИНН/КПП покупателя:</span> <span style="font-family: Arial, Helvetica, sans-serif; font-size: 6.4pt">7728533208/772801001</span> <span style="font-family: Arial, Helvetica, sans-serif; font-size: 5.7pt">(6б)</span></p></div>
+<div class="doc-section"><p style="text-align: center;"><span style="font-family: Arial, Helvetica, sans-serif; font-size: 6.4pt">Грузоотправитель и его адрес:</span> <span style="font-family: Arial, Helvetica, sans-serif; font-size: 5.7pt">(3)</span> <span style="font-family: Arial, Helvetica, sans-serif; font-size: 6.4pt">Валюта: наименование, код</span> <span style="font-family: Arial, Helvetica, sans-serif; font-size: 6.4pt">Рубли, 643</span> <span style="font-family: Arial, Helvetica, sans-serif; font-size: 5.7pt">(7)</span></p></div>
+<div class="doc-section"><p style="text-align: center;"><span style="font-family: Arial, Helvetica, sans-serif; font-size: 6.4pt">ООО «ГАЗПРОМБАНК АВТОЛИЗИНГ»,117342, Город Москва, вн.тер. г. Муниципальный</span> <span style="font-family: Arial, Helvetica, sans-serif; font-size: 6.4pt">Идентификатор государственного контракта,</span><br>
+<span style="font-family: Arial, Helvetica, sans-serif; font-size: 6.4pt">Грузополучатель и его адрес:</span> <span style="font-family: Arial, Helvetica, sans-serif; font-size: 6.4pt">Округ Коньково, ул Миклухо-Маклая, дом 40, помещение 2/1</span> <span style="font-family: Arial, Helvetica, sans-serif; font-size: 5.7pt">(4)</span> <span style="font-family: Arial, Helvetica, sans-serif; font-size: 6.4pt">договора (соглашения)</span><br>
+<span style="font-family: Arial, Helvetica, sans-serif; font-size: 6.4pt">К платежно-расчетному документу №</span> <span style="font-family: Arial, Helvetica, sans-serif; font-size: 5.7pt">(5)</span> <span style="font-family: Arial, Helvetica, sans-serif; font-size: 6.4pt">(при наличии):</span> <span style="font-family: Arial, Helvetica, sans-serif; font-size: 5.7pt">(8)</span><br>
+<span style="font-family: Arial, Helvetica, sans-serif; font-size: 6.4pt">Документ об отгрузке</span> <span style="font-family: Arial, Helvetica, sans-serif; font-size: 5.7pt">(5а)</span></p></div>
+<div class="doc-section"><table>
+  <thead>
+    <tr>
+      <th style="text-align: left; vertical-align: middle;"><span style="font-family: Arial, Helvetica, sans-serif; font-size: 5.7pt">№</span><br>
+<span style="font-family: Arial, Helvetica, sans-serif; font-size: 5.7pt">п/п</span></th>
+      <th rowspan="2" style="text-align: left; vertical-align: middle;"><span style="font-family: Arial, Helvetica, sans-serif; font-size: 5.7pt">Наименование товара (описание</span><br>
+<span style="font-family: Arial, Helvetica, sans-serif; font-size: 5.7pt">выполненных работ, оказанных услуг),</span><br>
+<span style="font-family: Arial, Helvetica, sans-serif; font-size: 5.7pt">имущественного права</span></th>
+      <th style="text-align: left; vertical-align: middle;"><span style="font-family: Arial, Helvetica, sans-serif; font-size: 5.7pt">Код</span><br>
+<span style="font-family: Arial, Helvetica, sans-serif; font-size: 5.7pt">вида</span><br>
+<span style="font-family: Arial, Helvetica, sans-serif; font-size: 5.7pt">товара</span></th>
+      <th style="text-align: left; vertical-align: middle;"><span style="font-family: Arial, Helvetica, sans-serif; font-size: 5.7pt">Единица</span><br>
+<span style="font-family: Arial, Helvetica, sans-serif; font-size: 5.7pt">измерения</span></th>
+      <th style="text-align: left; vertical-align: middle;"></th>
+      <th rowspan="2" style="text-align: left; vertical-align: middle;"><span style="font-family: Arial, Helvetica, sans-serif; font-size: 5.7pt">Кол-во</span><br>
+<span style="font-family: Arial, Helvetica, sans-serif; font-size: 5.7pt">(объем)</span></th>
+      <th style="text-align: left; vertical-align: middle;"><span style="font-family: Arial, Helvetica, sans-serif; font-size: 5.7pt">Цена (тариф)</span><br>
+<span style="font-family: Arial, Helvetica, sans-serif; font-size: 5.7pt">за единицу</span><br>
+<span style="font-family: Arial, Helvetica, sans-serif; font-size: 5.7pt">измерения</span></th>
+      <th rowspan="2" style="text-align: left; vertical-align: middle;"><span style="font-family: Arial, Helvetica, sans-serif; font-size: 5.7pt">Стоимость</span><br>
+<span style="font-family: Arial, Helvetica, sans-serif; font-size: 5.7pt">товаров</span><br>
+<span style="font-family: Arial, Helvetica, sans-serif; font-size: 5.7pt">(работ, услуг),</span><br>
+<span style="font-family: Arial, Helvetica, sans-serif; font-size: 5.7pt">имущественных</span><br>
+<span style="font-family: Arial, Helvetica, sans-serif; font-size: 5.7pt">прав без</span><br>
+<span style="font-family: Arial, Helvetica, sans-serif; font-size: 5.7pt">налога - всего</span></th>
+      <th rowspan="2" style="text-align: left; vertical-align: middle;"><span style="font-family: Arial, Helvetica, sans-serif; font-size: 5.7pt">В том</span><br>
+<span style="font-family: Arial, Helvetica, sans-serif; font-size: 5.7pt">числе</span><br>
+<span style="font-family: Arial, Helvetica, sans-serif; font-size: 5.7pt">сумма</span><br>
+<span style="font-family: Arial, Helvetica, sans-serif; font-size: 5.7pt">акциза</span></th>
+      <th style="text-align: left; vertical-align: middle;"><span style="font-family: Arial, Helvetica, sans-serif; font-size: 5.7pt">Налоговая</span><br>
+<span style="font-family: Arial, Helvetica, sans-serif; font-size: 5.7pt">ставка</span></th>
+      <th rowspan="2" style="text-align: left; vertical-align: middle;"><span style="font-family: Arial, Helvetica, sans-serif; font-size: 5.7pt">Сумма</span><br>
+<span style="font-family: Arial, Helvetica, sans-serif; font-size: 5.7pt">налога,</span><br>
+<span style="font-family: Arial, Helvetica, sans-serif; font-size: 5.7pt">предъявляемая</span><br>
+<span style="font-family: Arial, Helvetica, sans-serif; font-size: 5.7pt">покупателю</span></th>
+      <th rowspan="2" style="text-align: left; vertical-align: middle;"><span style="font-family: Arial, Helvetica, sans-serif; font-size: 5.7pt">Стоимость товаров</span><br>
+<span style="font-family: Arial, Helvetica, sans-serif; font-size: 5.7pt">(работ, услуг),</span><br>
+<span style="font-family: Arial, Helvetica, sans-serif; font-size: 5.7pt">имущественных</span><br>
+<span style="font-family: Arial, Helvetica, sans-serif; font-size: 5.7pt">прав с налогом -</span><br>
+<span style="font-family: Arial, Helvetica, sans-serif; font-size: 5.7pt">всего</span></th>
+      <th colspan="2" style="text-align: left; vertical-align: middle;"><span style="font-family: Arial, Helvetica, sans-serif; font-size: 5.7pt">Страна</span><br>
+<span style="font-family: Arial, Helvetica, sans-serif; font-size: 5.7pt">происхождения товара</span></th>
+      <th rowspan="2" style="text-align: left; vertical-align: middle;"><span style="font-family: Arial, Helvetica, sans-serif; font-size: 5.7pt">Регистрационный номер</span><br>
+<span style="font-family: Arial, Helvetica, sans-serif; font-size: 5.7pt">декларации</span><br>
+<span style="font-family: Arial, Helvetica, sans-serif; font-size: 5.7pt">на товары или</span><br>
+<span style="font-family: Arial, Helvetica, sans-serif; font-size: 5.7pt">регистрационный номер</span><br>
+<span style="font-family: Arial, Helvetica, sans-serif; font-size: 5.7pt">партии товара,</span><br>
+<span style="font-family: Arial, Helvetica, sans-serif; font-size: 5.7pt">подлежащего</span><br>
+<span style="font-family: Arial, Helvetica, sans-serif; font-size: 5.7pt">прослеживаемости</span></th>
+      <th colspan="2" style="text-align: left; vertical-align: middle;"><span style="font-family: Arial, Helvetica, sans-serif; font-size: 5.7pt">Количественная</span><br>
+<span style="font-family: Arial, Helvetica, sans-serif; font-size: 5.7pt">единица измерения</span><br>
+<span style="font-family: Arial, Helvetica, sans-serif; font-size: 5.7pt">товара,</span><br>
+<span style="font-family: Arial, Helvetica, sans-serif; font-size: 5.7pt">используемая в</span><br>
+<span style="font-family: Arial, Helvetica, sans-serif; font-size: 5.7pt">целях прослеживае-</span><br>
+<span style="font-family: Arial, Helvetica, sans-serif; font-size: 5.7pt">мости</span></th>
+      <th rowspan="2" style="text-align: left; vertical-align: middle;"><span style="font-family: Arial, Helvetica, sans-serif; font-size: 5.7pt">Количество товара,</span><br>
+<span style="font-family: Arial, Helvetica, sans-serif; font-size: 5.7pt">подлежащего</span><br>
+<span style="font-family: Arial, Helvetica, sans-serif; font-size: 5.7pt">прослеживаемости,</span><br>
+<span style="font-family: Arial, Helvetica, sans-serif; font-size: 5.7pt">в количественной</span><br>
+<span style="font-family: Arial, Helvetica, sans-serif; font-size: 5.7pt">единице измерения</span><br>
+<span style="font-family: Arial, Helvetica, sans-serif; font-size: 5.7pt">товара, используемой</span><br>
+<span style="font-family: Arial, Helvetica, sans-serif; font-size: 5.7pt">в целях осуществления</span><br>
+<span style="font-family: Arial, Helvetica, sans-serif; font-size: 5.7pt">прослеживаемости</span></th>
+    </tr>
+    <tr>
+      <th style="text-align: left; vertical-align: middle;"></th>
+      <th style="text-align: left; vertical-align: middle;"></th>
+      <th style="text-align: left; vertical-align: middle;"><span style="font-family: Arial, Helvetica, sans-serif; font-size: 5.7pt">код</span></th>
+      <th style="text-align: left; vertical-align: middle;"><span style="font-family: Arial, Helvetica, sans-serif; font-size: 5.7pt">условное</span><br>
+<span style="font-family: Arial, Helvetica, sans-serif; font-size: 5.7pt">обозначение</span><br>
+<span style="font-family: Arial, Helvetica, sans-serif; font-size: 5.7pt">(национальное)</span></th>
+      <th style="text-align: left; vertical-align: middle;"></th>
+      <th style="text-align: left; vertical-align: middle;"></th>
+      <th style="text-align: left; vertical-align: middle;"><span style="font-family: Arial, Helvetica, sans-serif; font-size: 5.7pt">цифровой</span><br>
+<span style="font-family: Arial, Helvetica, sans-serif; font-size: 5.7pt">код</span></th>
+      <th style="text-align: left; vertical-align: middle;"><span style="font-family: Arial, Helvetica, sans-serif; font-size: 5.7pt">краткое</span><br>
+<span style="font-family: Arial, Helvetica, sans-serif; font-size: 5.7pt">наименование</span></th>
+      <th style="text-align: left; vertical-align: middle;"><span style="font-family: Arial, Helvetica, sans-serif; font-size: 5.7pt">код</span></th>
+      <th style="text-align: left; vertical-align: middle;"><span style="font-family: Arial, Helvetica, sans-serif; font-size: 5.7pt">условное</span><br>
+<span style="font-family: Arial, Helvetica, sans-serif; font-size: 5.7pt">обозначение</span></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td colspan="2" style="text-align: left; vertical-align: middle;"><span style="font-family: Arial, Helvetica, sans-serif; font-size: 6.4pt">1</span> <span style="font-family: Arial, Helvetica, sans-serif; font-size: 6.4pt">1а</span></td>
+      <td style="text-align: left; vertical-align: middle;"><span style="font-family: Arial, Helvetica, sans-serif; font-size: 6.4pt">1б</span></td>
+      <td style="text-align: right; vertical-align: middle;"><span style="font-family: Arial, Helvetica, sans-serif; font-size: 6.4pt">2</span></td>
+      <td style="text-align: left; vertical-align: middle;"><span style="font-family: Arial, Helvetica, sans-serif; font-size: 6.4pt">2а</span></td>
+      <td style="text-align: right; vertical-align: middle;"><span style="font-family: Arial, Helvetica, sans-serif; font-size: 6.4pt">3</span></td>
+      <td style="text-align: right; vertical-align: middle;"><span style="font-family: Arial, Helvetica, sans-serif; font-size: 6.4pt">4</span></td>
+      <td style="text-align: right; vertical-align: middle;"><span style="font-family: Arial, Helvetica, sans-serif; font-size: 6.4pt">5</span></td>
+      <td style="text-align: right; vertical-align: middle;"><span style="font-family: Arial, Helvetica, sans-serif; font-size: 6.4pt">6</span></td>
+      <td style="text-align: right; vertical-align: middle;"><span style="font-family: Arial, Helvetica, sans-serif; font-size: 6.4pt">7</span></td>
+      <td style="text-align: right; vertical-align: middle;"><span style="font-family: Arial, Helvetica, sans-serif; font-size: 6.4pt">8</span></td>
+      <td style="text-align: right; vertical-align: middle;"><span style="font-family: Arial, Helvetica, sans-serif; font-size: 6.4pt">9</span></td>
+      <td style="text-align: right; vertical-align: middle;"><span style="font-family: Arial, Helvetica, sans-serif; font-size: 6.4pt">10</span></td>
+      <td style="text-align: left; vertical-align: middle;"><span style="font-family: Arial, Helvetica, sans-serif; font-size: 6.4pt">10а</span></td>
+      <td style="text-align: right; vertical-align: middle;"><span style="font-family: Arial, Helvetica, sans-serif; font-size: 6.4pt">11</span></td>
+      <td style="text-align: right; vertical-align: middle;"><span style="font-family: Arial, Helvetica, sans-serif; font-size: 6.4pt">12</span></td>
+      <td style="text-align: right; vertical-align: middle;"><span style="font-family: Arial, Helvetica, sans-serif; font-size: 6.4pt">12а</span></td>
+      <td style="text-align: right; vertical-align: middle;"><span style="font-family: Arial, Helvetica, sans-serif; font-size: 6.4pt">13</span></td>
+    </tr>
+    <tr>
+      <td style="text-align: left; vertical-align: middle;"><span style="font-family: Arial, Helvetica, sans-serif; font-size: 6.4pt">1</span></td>
+      <td style="text-align: left; vertical-align: middle;"></td>
+      <td style="text-align: left; vertical-align: middle;"><span style="font-family: Arial, Helvetica, sans-serif; font-size: 6.4pt">--</span></td>
+      <td style="text-align: right; vertical-align: middle;"><span style="font-family: Arial, Helvetica, sans-serif; font-size: 6.4pt">796</span></td>
+      <td style="text-align: left; vertical-align: middle;"><span style="font-family: Arial, Helvetica, sans-serif; font-size: 6.4pt">шт.</span></td>
+      <td style="text-align: right; vertical-align: middle;"><span style="font-family: Arial, Helvetica, sans-serif; font-size: 6.4pt">1.000</span></td>
+      <td style="text-align: left; vertical-align: middle;"></td>
+      <td style="text-align: left; vertical-align: middle;"></td>
+      <td style="text-align: left; vertical-align: middle;"><span style="font-family: Arial, Helvetica, sans-serif; font-size: 6.4pt">без</span><br>
+<span style="font-family: Arial, Helvetica, sans-serif; font-size: 6.4pt">акциза</span></td>
+      <td style="text-align: left; vertical-align: middle;"></td>
+      <td style="text-align: left; vertical-align: middle;"></td>
+      <td style="text-align: left; vertical-align: middle;"></td>
+      <td style="text-align: left; vertical-align: middle;"></td>
+      <td style="text-align: left; vertical-align: middle;"></td>
+      <td style="text-align: left; vertical-align: middle;"></td>
+      <td style="text-align: left; vertical-align: middle;"></td>
+      <td style="text-align: left; vertical-align: middle;"></td>
+    </tr>
+    <tr>
+      <td colspan="7" style="text-align: left; vertical-align: middle;"><span style="font-family: Arial, Helvetica, sans-serif; font-size: 7.1pt; font-weight: 700">Всего к оплате (9)</span></td>
+      <td style="text-align: left; vertical-align: middle;"></td>
+      <td colspan="2" style="text-align: left; vertical-align: middle;"><span style="font-family: Arial, Helvetica, sans-serif; font-size: 7.1pt; font-weight: 700">Х</span></td>
+      <td style="text-align: left; vertical-align: middle;"></td>
+      <td style="text-align: left; vertical-align: middle;"></td>
+      <td colspan="6" style="text-align: left; vertical-align: middle;"></td>
+    </tr>
+  </tbody>
+</table></div>
+<div class="doc-section"><p style="text-align: left;"><span style="font-family: Arial, Helvetica, sans-serif; font-size: 7.1pt">Руководитель организации</span> <span style="font-family: Arial, Helvetica, sans-serif; font-size: 7.1pt">Главный бухгалтер</span><br>
+<span style="font-family: Arial, Helvetica, sans-serif; font-size: 7.1pt">или иное уполномоченное лицо</span> <span style="font-family: Arial, Helvetica, sans-serif; font-size: 7.1pt">или иное уполномоченное лицо</span><br>
+<span style="font-family: Arial, Helvetica, sans-serif; font-size: 5.7pt">(подпись)</span> <span style="font-family: Arial, Helvetica, sans-serif; font-size: 5.7pt">(ф.и.о.)</span> <span style="font-family: Arial, Helvetica, sans-serif; font-size: 5.7pt">(подпись)</span> <span style="font-family: Arial, Helvetica, sans-serif; font-size: 5.7pt">(ф.и.о.)</span></p></div>
+<div class="doc-section"><p style="text-align: left;"><span style="font-family: Arial, Helvetica, sans-serif; font-size: 7.1pt">Индивидуальный предприниматель</span><br>
+<span style="font-family: Arial, Helvetica, sans-serif; font-size: 7.1pt">или иное уполномоченное лицо</span><br>
+<span style="font-family: Arial, Helvetica, sans-serif; font-size: 5.7pt">(подпись)</span> <span style="font-family: Arial, Helvetica, sans-serif; font-size: 5.7pt">(ф.и.о.)</span> <span style="font-family: Arial, Helvetica, sans-serif; font-size: 5.7pt">(реквизиты свидетельства о государственной</span><br>
+<span style="font-family: Arial, Helvetica, sans-serif; font-size: 5.7pt">регистрации индивидуального предпринимателя)</span></p></div>
+<table data-heuristic="invoice-fields">
+<thead><tr><th>Код</th><th>Поле</th><th>Значение</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Номер и дата счёта-фактуры</td><td>Приложение № 1 к постановлению Правительства Российской Федерации от 26 декабря 2011 г. № 1137 Исправление № -- от</td></tr>
+<tr><td>1а</td><td>Исправление № / дата</td><td>(в редакции постановления Правительства Российской Федерации от 2 апреля 2021 г. № 534)</td></tr>
+<tr><td>2</td><td>Продавец</td><td>Покупатель: ООО «ГАЗПРОМБАНК АВТОЛИЗИНГ»</td></tr>
+<tr><td>6</td><td>Покупатель</td><td>117342, Город Москва, вн.тер. г. Муниципальный Округ Коньково, ул</td></tr>
+<tr><td>2а</td><td>Адрес продавца</td><td>Адрес: Миклухо-Маклая, дом 40, помещение 2/1</td></tr>
+<tr><td>6а</td><td>Адрес покупателя</td><td>ИНН/КПП продавца</td></tr>
+<tr><td>2б</td><td>ИНН/КПП продавца</td><td>ИНН/КПП покупателя: 7728533208/772801001</td></tr>
+<tr><td>6б</td><td>ИНН/КПП покупателя</td><td>Грузоотправитель и его адрес</td></tr>
+<tr><td>3</td><td>Грузоотправитель и его адрес</td><td>Валюта: наименование, код Рубли, 643</td></tr>
+<tr><td>7</td><td>Валюта: наименование, код</td><td>ООО «ГАЗПРОМБАНК АВТОЛИЗИНГ»,117342, Город Москва, вн.тер. г. Муниципальный Идентификатор государственного контракта, Грузополучатель и его адрес: Округ Коньково, ул Миклухо-Маклая, дом 40, помещение 2/1</td></tr>
+<tr><td>4</td><td>Грузополучатель и его адрес</td><td>договора (соглашения) К платежно-расчетному документу №</td></tr>
+<tr><td>5</td><td>К платёжно-расчётному документу</td><td>(при наличии)</td></tr>
+<tr><td>8</td><td>Идентификатор госконтракта</td><td>Документ об отгрузке</td></tr>
+<tr><td>5а</td><td>Документ об отгрузке</td><td>№ п/п</td></tr>
+<tr><td>9</td><td>Поле (9)</td><td>Х Руководитель организации Главный бухгалтер или иное уполномоченное лицо или иное уполномоченное лицо (подпись) (ф.и.о.) (подпись) (ф.и.о.) Индивидуальный предприниматель или иное уполномоченное лицо (подпись) (ф.и.о.) (реквизиты свидетельства о государственной регистрации индивидуального предприни…</td></tr>
+</tbody></table>
+</section>
+</body>
+</html>

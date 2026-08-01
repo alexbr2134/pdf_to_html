@@ -29,7 +29,7 @@ h1, h2, h3, p { margin: 0.25em 0 0.5em; font-weight: inherit; font-size: inherit
 </style>
 </head>
 <body>
-<section class="page" data-page="1">
+<section class="page" data-page="1" data-doc-type="invoice_sf">
 <div class="doc-section"><p style="text-align: center;"><span style="font-family: Arial, Helvetica, sans-serif; font-size: 8.0pt">Счет-фактура №</span> <span style="font-family: Arial, Helvetica, sans-serif; font-size: 8.0pt">23</span> <span style="font-family: Arial, Helvetica, sans-serif; font-size: 8.0pt">от</span> <span style="font-family: Arial, Helvetica, sans-serif; font-size: 8.0pt">1 апреля 2026 г.</span> <span style="font-family: Arial, Helvetica, sans-serif; font-size: 6.4pt">(1)</span> <span style="font-family: Arial, Helvetica, sans-serif; font-size: 4.8pt">Приложение № 1 к постановлению Правительства Российской Федерации от 26 декабря 2011 г. № 1137</span><br>
 <span style="font-family: Arial, Helvetica, sans-serif; font-size: 4.8pt">(в редакции постановления Правительства Российской Федерации от 23 января 2026 г. № 26)</span><br>
 <span style="font-family: Arial, Helvetica, sans-serif; font-size: 8.0pt">Исправление №</span> <span style="font-family: Arial, Helvetica, sans-serif; font-size: 8.0pt">--</span> <span style="font-family: Arial, Helvetica, sans-serif; font-size: 8.0pt">от</span> <span style="font-family: Arial, Helvetica, sans-serif; font-size: 8.0pt">--</span> <span style="font-family: Arial, Helvetica, sans-serif; font-size: 6.4pt">(1а)</span><br>
@@ -84,7 +84,7 @@ h1, h2, h3, p { margin: 0.25em 0 0.5em; font-weight: inherit; font-size: inherit
 <span style="font-family: Arial, Helvetica, sans-serif; font-size: 6.4pt">всего</span></th>
       <th colspan="2" style="text-align: left; vertical-align: middle;"><span style="font-family: Arial, Helvetica, sans-serif; font-size: 6.4pt">Страна</span><br>
 <span style="font-family: Arial, Helvetica, sans-serif; font-size: 6.4pt">происхождения товара</span></th>
-      <th style="text-align: left; vertical-align: middle;"><span style="font-family: Arial, Helvetica, sans-serif; font-size: 6.4pt">Регистрационный номер</span><br>
+      <th rowspan="2" style="text-align: left; vertical-align: middle;"><span style="font-family: Arial, Helvetica, sans-serif; font-size: 6.4pt">Регистрационный номер</span><br>
 <span style="font-family: Arial, Helvetica, sans-serif; font-size: 6.4pt">декларации на товары или</span><br>
 <span style="font-family: Arial, Helvetica, sans-serif; font-size: 6.4pt">регистрационный номер партии</span><br>
 <span style="font-family: Arial, Helvetica, sans-serif; font-size: 6.4pt">товара, подлежащего</span><br>
@@ -99,8 +99,10 @@ h1, h2, h3, p { margin: 0.25em 0 0.5em; font-weight: inherit; font-size: inherit
 <span style="font-family: Arial, Helvetica, sans-serif; font-size: 6.4pt">(национальное)</span></th>
       <th style="text-align: left; vertical-align: middle;"></th>
       <th style="text-align: left; vertical-align: middle;"></th>
-      <th colspan="2" style="text-align: left; vertical-align: middle;"><span style="font-family: Arial, Helvetica, sans-serif; font-size: 6.4pt">цифровой</span> <span style="font-family: Arial, Helvetica, sans-serif; font-size: 6.4pt">краткое</span><br>
-<span style="font-family: Arial, Helvetica, sans-serif; font-size: 6.4pt">код</span> <span style="font-family: Arial, Helvetica, sans-serif; font-size: 6.4pt">наименование</span></th>
+      <th style="text-align: left; vertical-align: middle;"><span style="font-family: Arial, Helvetica, sans-serif; font-size: 6.4pt">цифровой</span><br>
+<span style="font-family: Arial, Helvetica, sans-serif; font-size: 6.4pt">код</span></th>
+      <th style="text-align: left; vertical-align: middle;"><span style="font-family: Arial, Helvetica, sans-serif; font-size: 6.4pt">краткое</span><br>
+<span style="font-family: Arial, Helvetica, sans-serif; font-size: 6.4pt">наименование</span></th>
     </tr>
   </thead>
   <tbody>
@@ -155,6 +157,26 @@ h1, h2, h3, p { margin: 0.25em 0 0.5em; font-weight: inherit; font-size: inherit
 <span style="font-family: Arial, Helvetica, sans-serif; font-size: 6.4pt">или иное уполномоченное лицо</span><br>
 <span style="font-family: Arial, Helvetica, sans-serif; font-size: 4.8pt">(подпись)</span> <span style="font-family: Arial, Helvetica, sans-serif; font-size: 4.8pt">(ф.и.о.)</span> <span style="font-family: Arial, Helvetica, sans-serif; font-size: 4.8pt">(основной государственный регистрационный номер</span><br>
 <span style="font-family: Arial, Helvetica, sans-serif; font-size: 4.8pt">индивидуального предпринимателя и дата присвоения такого номера)</span></p></div>
+<table data-heuristic="invoice-fields">
+<thead><tr><th>Код</th><th>Поле</th><th>Значение</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Номер и дата счёта-фактуры</td><td>Приложение № 1 к постановлению Правительства Российской Федерации от 26 декабря 2011 г. № 1137 (в редакции постановления Правительства Российской Федерации от 23 января 2026 г. № 26) Исправление № -- от</td></tr>
+<tr><td>1а</td><td>Исправление № / дата</td><td>Продавец: ООО &quot;АКВАМАРИН&quot;</td></tr>
+<tr><td>2</td><td>Продавец</td><td>Покупатель: ООО &quot;ЧАРОИТ&quot;</td></tr>
+<tr><td>6</td><td>Покупатель</td><td>Адрес: 125319, Москва г, Кочновский проезд, дом 9, строение 5, офис 155</td></tr>
+<tr><td>2а</td><td>Адрес продавца</td><td>Адрес: 649007, Республика Алтай, г. Горно-Алтайск, ул. Оконечная, дом 5/3</td></tr>
+<tr><td>6а</td><td>Адрес покупателя</td><td>ИНН/КПП продавца: 7718876252/503201001</td></tr>
+<tr><td>2б</td><td>ИНН/КПП продавца</td><td>ИНН/КПП покупателя: 0411106941/041101001</td></tr>
+<tr><td>6б</td><td>ИНН/КПП покупателя</td><td>Грузоотправитель и его адрес</td></tr>
+<tr><td>3</td><td>Грузоотправитель и его адрес</td><td>Валюта: наименование, код Российский рубль, 643</td></tr>
+<tr><td>7</td><td>Валюта: наименование, код</td><td>Грузополучатель и его адрес</td></tr>
+<tr><td>4</td><td>Грузополучатель и его адрес</td><td>Идентификатор государственного контракта, К платежно-расчетному документу № от</td></tr>
+<tr><td>5</td><td>К платёжно-расчётному документу</td><td>договора (соглашения) (при наличии)</td></tr>
+<tr><td>8</td><td>Идентификатор госконтракта</td><td>Документ об отгрузке Акт, № 17 от 01.04.2026</td></tr>
+<tr><td>5а</td><td>Документ об отгрузке</td><td>К счету-фактуре (счетам-фактурам), выставленному (выставленным) при получении оплаты, частичной оплаты или иных платежей в счет предстоящих поставок товаров (выполнения работ, оказания услуг), передачи имущественных прав № от , исправление № от</td></tr>
+<tr><td>5б</td><td>Поле (5б)</td><td>№ п/п</td></tr>
+<tr><td>9</td><td>Поле (9)</td><td>18 032,79 Х 3 967,21 22 000,00 Руководитель организации Главный бухгалтер или иное уполномоченное лицо Герасимов В. А. или иное уполномоченное лицо Герасимов В. А. (подпись) (ф.и.о.) (подпись) (ф.и.о.) Индивидуальный предприниматель или иное уполномоченное лицо (подпись) (ф.и.о.) (основной государст…</td></tr>
+</tbody></table>
 </section>
 </body>
 </html>

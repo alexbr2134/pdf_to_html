@@ -323,6 +323,28 @@ def _table_grid_one_cell_ratio(table) -> float:
     return single / len(rows)
 
 
+def _table_has_form_line_item_headers(page, table) -> bool:
+    """Шапка товарной/сметной таблицы СФ, УПД, ТОРГ-12, КС-2/КС-3."""
+    words = _table_words(page, table)
+    if len(words) < 10:
+        return False
+    text = " ".join(w.get("text") or "" for w in words).lower()
+    patterns = (
+        r"наименован\w*\s+товар",
+        r"код\s+товар|код\s+вида",
+        r"единиц\w*\s+измер",
+        r"сумма\s+налог",
+        r"стоимост\w*\s+товар",
+        r"налогов\w*\s+ставк|нало-?\s*говая\s+ставка",
+        r"номер\s+по\s+поряд",
+        r"наименован\w*\s+работ",
+        r"выполнено\s+работ",
+        r"масса\s+брутто|масса\s+нетто",
+    )
+    hits = sum(1 for p in patterns if re.search(p, text))
+    return hits >= 3
+
+
 def _table_has_payment_or_invoice_signals(page, table) -> bool:
     """Короткие «ломаные» таблицы оплаты/счетов: даты и суммы при слабой lattice-сетке."""
     words = _table_words(page, table)
@@ -343,6 +365,9 @@ def _table_has_payment_or_invoice_signals(page, table) -> bool:
     if grid_rows and grid_rows <= 4 and (dates >= 2 or (headers and (dates >= 1 or money >= 1))):
         return True
     if headers and dates >= 2 and money >= 1:
+        return True
+    # СФ/УПД/ТОРГ/КС: многоуровневая шапка без дат/сумм (пустая или header-only форма)
+    if _table_has_form_line_item_headers(page, table):
         return True
     return False
 
@@ -634,9 +659,11 @@ def find_tables_with_source(
         return PageTableResult(tables_lines, source)
 
     if tables_lines:
-        tables_lines = _filter_prose_tables(page, tables_lines)
-        extra = find_supplementary_text_tables(page, tables_lines)
-        return PageTableResult(_merge_table_lists(tables_lines, extra), "lines")
+        filtered_lines = _filter_prose_tables(page, tables_lines)
+        if filtered_lines:
+            extra = find_supplementary_text_tables(page, filtered_lines)
+            return PageTableResult(_merge_table_lists(filtered_lines, extra), "lines")
+        # lines нашлись, но все отфильтрованы как prose → camelot/text fallback
 
     tables_camelot = find_tables_camelot(pdf_path, page_num, page.height)
     tables_camelot = _filter_prose_tables(page, tables_camelot)
