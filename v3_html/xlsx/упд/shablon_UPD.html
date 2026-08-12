@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"><title>shablon_UPD</title>
+<style>
+body { font-family: "Times New Roman", Times, serif; font-size: 11pt; line-height: 1.35; margin: 2em; }
+table { border-collapse: collapse; margin: 0.6em 0 1em; width: auto; max-width: 100%; }
+th, td { border: 1px solid #888; padding: 4px 10px; vertical-align: middle; text-align: left; }
+td.num, th.num { text-align: right; }
+h1, h2, h3, p { margin: 0.25em 0 0.5em; font-weight: inherit; font-size: inherit; }
+.doc-section { margin-bottom: 0.75em; }
+.broken-font-warning {
+  border: 1px solid #b00;
+  background: #fff5f5;
+  color: #700;
+  padding: 0.6em 0.9em;
+  margin: 0 0 1em;
+  font-weight: bold;
+}
+.page-rejected {
+  border: 1px solid #a60;
+  background: #fff8f0;
+  color: #530;
+  padding: 0.75em 1em;
+  margin: 0 0 1em;
+}
+.page-rejected ul { margin: 0.4em 0 0 1.2em; }
+.page[data-rejected="true"] { opacity: 0.95; }
+</style>
+</head>
+<body>
+<p class="doc-section">Источник: shablon_UPD.xls</p>
+<section class="page" data-unit="1" data-unit-kind="page" data-rejected="true" data-reasons="legacy_format">
+<div class="doc-section-label">Раздел 1</div>
+<div class="page-rejected" role="status" data-rejected="true" data-reasons="legacy_format"><p><strong>Страница 1 отсеян</strong> — не пригоден для smart-конвертации (будет передан другой модели).</p><ul><li>формат .doc/.xls не обрабатывается (нужен OOXML)</li></ul></div>
+</section>
+</body>
+</html>

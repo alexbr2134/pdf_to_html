@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"><title>chet</title>
+<style>
+body { font-family: "Times New Roman", Times, serif; font-size: 11pt; line-height: 1.35; margin: 2em; }
+table { border-collapse: collapse; margin: 0.6em 0 1em; width: auto; max-width: 100%; }
+th, td { border: 1px solid #888; padding: 4px 10px; vertical-align: middle; text-align: left; }
+td.num, th.num { text-align: right; }
+h1, h2, h3, p { margin: 0.25em 0 0.5em; font-weight: inherit; font-size: inherit; }
+.doc-section { margin-bottom: 0.75em; }
+.broken-font-warning {
+  border: 1px solid #b00;
+  background: #fff5f5;
+  color: #700;
+  padding: 0.6em 0.9em;
+  margin: 0 0 1em;
+  font-weight: bold;
+}
+.page-rejected {
+  border: 1px solid #a60;
+  background: #fff8f0;
+  color: #530;
+  padding: 0.75em 1em;
+  margin: 0 0 1em;
+}
+.page-rejected ul { margin: 0.4em 0 0 1.2em; }
+.page[data-rejected="true"] { opacity: 0.95; }
+</style>
+</head>
+<body>
+<p class="doc-section">Источник: chet.docx</p>
+<section class="page" data-unit="1" data-unit-kind="page" data-doc-type="invoice_sf">
+<div class="doc-section-label">Раздел 1</div>
+<p>Счет-фактура. Реализация товаров</p>
+<p>Приложение N 1</p>
+<p>к постановлению Правительства</p>
+<p>Российской Федерации</p>
+<p>от 26 декабря 2011 г. N 1137</p>
+<p>(в ред. Постановления Правительства РФ</p>
+<p>от 19.08.2017 N 981)</p>
+<p>147     03    октября 2017 г.</p>
+<p>СЧЕТ-ФАКТУРА N --- от &quot;--&quot; ------------------ (1)</p>
+<p>-       -         - &lt;1&gt;</p>
+<p>ИСПРАВЛЕНИЕ N --- от &quot;--&quot; ------------------ (1а)</p>
+<p>ООО &quot;Альфа&quot;</p>
+<p>Продавец -------------------------------------------------------------- (2)</p>
+<p>153000, г. Иваново, ул. Ленина, д. 1, к. 1</p>
+<p>Адрес ---------------------------------------------------------------- (2а)</p>
+<p>3702123456/370201001</p>
+<p>ИНН/КПП продавца ----------------------------------------------------- (2б)</p>
+<p>Он же</p>
+<p>Грузоотправитель и его адрес ------------------------------------------ (3)</p>
+<p>ООО &quot;Бета&quot;, 129337, г. Москва, ул. Красная</p>
+<p>Сосна, д. 5</p>
+<p>Грузополучатель и его адрес ------------------------------------------- (4)</p>
+<p>К платежно-расчетному документу N _________ от ________________________ (5)</p>
+<p>ООО &quot;Бета&quot;</p>
+<p>Покупатель ------------------------------------------------------------ (6)</p>
+<p>129337, г. Москва, ул. Красная Сосна, д. 5</p>
+<p>Адрес ---------------------------------------------------------------- (6а)</p>
+<p>7716123456/771601001</p>
+<p>ИНН/КПП покупателя --------------------------------------------------- (6б)</p>
+<p>российский рубль, 643 &lt;2&gt;</p>
+<p>Валюта: наименование, код --------------------------------------------- (7)</p>
+<p>Идентификатор   государственного   контракта,  договора  (соглашения)  (при</p>
+<p>наличии) __________________________ (8)</p>
+<table>
+  <tbody>
+    <tr>
+      <td rowspan="2" style="text-align: left; vertical-align: middle;">Наименование товара (описание выполненных работ, оказанных услуг), имущественного права</td>
+      <td rowspan="2" style="text-align: left; vertical-align: middle;">Код вида товара</td>
+      <td colspan="2" style="text-align: left; vertical-align: middle;">Единица измерения &lt;3&gt;</td>
+      <td rowspan="2" style="text-align: left; vertical-align: middle;">Количество (объем)</td>
+      <td rowspan="2" style="text-align: left; vertical-align: middle;">Цена (тариф) за единицу измерения</td>
+      <td rowspan="2" style="text-align: left; vertical-align: middle;">Стоимость товаров (работ, услуг), имущественных прав без налога - всего</td>
+      <td rowspan="2" style="text-align: left; vertical-align: middle;">В том числе сумма акциза</td>
+      <td rowspan="2" style="text-align: left; vertical-align: middle;">Налоговая ставка</td>
+      <td rowspan="2" style="text-align: left; vertical-align: middle;">Сумма налога, предъявляемая покупателю</td>
+      <td rowspan="2" style="text-align: left; vertical-align: middle;">Стоимость товаров (работ, услуг), имущественных прав с налогом - всего</td>
+      <td colspan="2" style="text-align: left; vertical-align: middle;">Страна происхождения товара &lt;4&gt;</td>
+      <td rowspan="2" style="text-align: left; vertical-align: middle;">Регистрационный номер таможенной декларации</td>
+    </tr>
+    <tr>
+      <td style="text-align: left; vertical-align: middle;">код</td>
+      <td style="text-align: left; vertical-align: middle;">условное обозначение (национальное)</td>
+      <td style="text-align: left; vertical-align: middle;">цифровой код</td>
+      <td style="text-align: left; vertical-align: middle;">краткое наименование</td>
+    </tr>
+    <tr>
+      <td style="text-align: left; vertical-align: middle;">1</td>
+      <td style="text-align: left; vertical-align: middle;">1а</td>
+      <td style="text-align: right; vertical-align: middle;">2</td>
+      <td style="text-align: left; vertical-align: middle;">2а</td>
+      <td style="text-align: right; vertical-align: middle;">3</td>
+      <td style="text-align: right; vertical-align: middle;">4</td>
+      <td style="text-align: right; vertical-align: middle;">5</td>
+      <td style="text-align: right; vertical-align: middle;">6</td>
+      <td style="text-align: right; vertical-align: middle;">7</td>
+      <td style="text-align: right; vertical-align: middle;">8</td>
+      <td style="text-align: right; vertical-align: middle;">9</td>
+      <td style="text-align: right; vertical-align: middle;">10</td>
+      <td style="text-align: right; vertical-align: middle;">10а</td>
+      <td style="text-align: right; vertical-align: middle;">11</td>
+    </tr>
+    <tr>
+      <td style="text-align: left; vertical-align: middle;">Дверь металлическая</td>
+      <td style="text-align: left; vertical-align: middle;"></td>
+      <td style="text-align: right; vertical-align: middle;">796</td>
+      <td style="text-align: left; vertical-align: middle;">шт</td>
+      <td style="text-align: right; vertical-align: middle;">1</td>
+      <td style="text-align: right; vertical-align: middle;">15 000,00</td>
+      <td style="text-align: right; vertical-align: middle;">15 000,00</td>
+      <td style="text-align: left; vertical-align: middle;">без акциза</td>
+      <td style="text-align: left; vertical-align: middle;">18%</td>
+      <td style="text-align: right; vertical-align: middle;">2 700,00</td>
+      <td style="text-align: right; vertical-align: middle;">17 700,00</td>
+      <td style="text-align: left; vertical-align: middle;"></td>
+      <td style="text-align: left; vertical-align: middle;"></td>
+      <td style="text-align: left; vertical-align: middle;"></td>
+    </tr>
+    <tr>
+      <td colspan="6" style="text-align: left; vertical-align: middle;">Всего к оплате</td>
+      <td style="text-align: right; vertical-align: middle;">15 000,00</td>
+      <td colspan="2" style="text-align: left; vertical-align: middle;">X</td>
+      <td style="text-align: right; vertical-align: middle;">2 700,00</td>
+      <td style="text-align: right; vertical-align: middle;">17 700,00</td>
+      <td style="text-align: left; vertical-align: middle;"></td>
+      <td style="text-align: left; vertical-align: middle;"></td>
+      <td style="text-align: left; vertical-align: middle;"></td>
+    </tr>
+  </tbody>
+</table>
+<p>Руководитель                              Главный бухгалтер</p>
+<p>организации или иное Иванов Иванов А.А. или иное             Федоров    Федоров И.И.</p>
+<p>уполномоченное лицо --------- ----------  уполномоченное лицо --------- -------------</p>
+<p>(подпись)  (ф.и.о.)                       (подпись)    (ф.и.о.)</p>
+<p>Индивидуальный</p>
+<p>предприниматель или</p>
+<p>иное уполномоченное</p>
+<p>лицо                _________ ________________________________________________</p>
+<p>(подпись) (ф.и.о.)       (реквизиты свидетельства</p>
+<p>о государственной регистрации</p>
+<p>индивидуального предпринимателя)</p>
+<p>&lt;1&gt; В данной строке указываются порядковый номер и дата исправления, внесенного в счет-фактуру. Если выписывается первичный счет-фактура, то ставится прочерк (пп. &quot;б&quot; п. 1 Правил заполнения счета-фактуры).</p>
+<p>&lt;2&gt; Код и название валюты необходимо указывать согласно Общероссийскому классификатору валют ОК (МК (ИСО 4217) 003-97) 014-2000, утвержденному Постановлением Госстандарта России от 25.12.2000 N 405-ст (пп. &quot;м&quot; п. 1 Правил заполнения счета-фактуры).</p>
+<p>&lt;3&gt; Показатели граф заполняются на основании Общероссийского классификатора единиц измерения ОК 015-94 (МК 002-97), утвержденного Постановлением Госстандарта России от 26.12.1994 N 366 (пп. &quot;б&quot; п. 2 Правил заполнения счета-фактуры).</p>
+<p>&lt;4&gt; Код и наименование страны происхождения указываются в соответствии с Общероссийским классификатором стран мира ОК (МК (ИСО 3166) 004-97) 025-2001, утвержденным Постановлением Госстандарта России от 14.12.2001 N 529-ст. Данные графы заполняются в отношении товаров, страной происхождения которых не является Российская Федерация (пп. &quot;к&quot; п. 2 Правил заполнения счета-фактуры).</p>
+</section>
+</body>
+</html>

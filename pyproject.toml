@@ -1,0 +1,53 @@
+[project]
+name = "pdf-to-html"
+version = "0.2.0"
+description = "Smart PDF/Office → semantic HTML (tables, doc types, routing)"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "PyMuPDF>=1.24.0",
+    "pdfplumber>=0.11.0",
+    "camelot-py>=0.11.0",
+    "pillow>=10.4.0",
+    "opencv-python-headless>=4.10.0",
+    "python-docx>=1.1.0",
+    "openpyxl>=3.1.0",
+    "xlrd>=2.0.1",
+    "lxml>=5.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "jupyter>=1.0.0",
+    "ipykernel>=6.29.0",
+]
+paddle = [
+    "paddleocr>=2.7.0",
+    "paddlepaddle>=2.6.0",
+    "numpy>=1.24.0",
+]
+
+[project.scripts]
+pdf-to-html = "pdf_to_html:_main"
+office-to-html = "office_to_html:_main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+py-modules = [
+    "pdf_to_html",
+    "office_to_html",
+    "office_normalize",
+    "office_docx",
+    "office_xlsx",
+    "office_html",
+    "office_suitability",
+    "pdf_table_engine",
+    "pdf_paddle_detection",
+    "pdf_line_vectorize",
+    "pdf_html_pipeline",
+    "pdf_doc_types",
+    "page_suitability",
+]

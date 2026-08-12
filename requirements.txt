@@ -1,0 +1,3 @@
+# Зависимости задаются в pyproject.toml
+# Установка: bash scripts/setup.sh  или  python scripts/install.py
+-e ".[dev]"
