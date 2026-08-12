@@ -680,11 +680,15 @@ def find_tables_smart(page, pdf_path: str | Path | None = None, page_num: int | 
     return find_tables_with_source(page, pdf_path, page_num).tables
 
 
-def _suppress_scan_noise() -> None:
+def suppress_scan_noise() -> None:
     """Глушит warnings и шумные логгеры Camelot/pdfminer/PIL."""
     warnings.filterwarnings("ignore")
     for logger_name in ("camelot", "pdfminer", "pdfminer.pdfpage", "PIL", "pypdf"):
         logging.getLogger(logger_name).setLevel(logging.ERROR)
+
+
+# transitional alias
+_suppress_scan_noise = suppress_scan_noise
 
 
 def scan_samples_table_stats(
@@ -695,7 +699,7 @@ def scan_samples_table_stats(
     """Прогон всех PDF в samples/: сводка по источникам детекции таблиц."""
     import pdfplumber
 
-    _suppress_scan_noise()
+    suppress_scan_noise()
 
     root = Path(samples_dir)
     pdfs = sorted(root.glob("*.pdf"))

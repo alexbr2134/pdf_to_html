@@ -24,14 +24,17 @@
     - ``broken_fonts`` — битая кодировка / OCR-garble / перевёрнутая кириллица
     - ``image_only_scan`` — почти нет текстового слоя
     - ``unmarked_table_lines`` — линии с растра + тяжёлая сетка после обработки
+      (жёсткость задаётся ``unmarked_routing_strictness`` ∈ [0, 1];
+      по умолчанию ``DEFAULT_UNMARKED_ROUTING_STRICTNESS`` = 0.5 — как раньше)
 
 Реализация
-    Сборка страниц — ``pdf_html_pipeline.py`` (обычный Python-модуль).
-    Детект таблиц / роутинг / типы — ``pdf_table_engine.py``,
-    ``page_suitability.py``, ``pdf_doc_types.py``.
-    Ноутбук ``pdf_to_html_smart.ipynb`` в runtime не используется.
+    Сборка страниц — в ``pdf_html_pipeline.py`` (обычный Python, без загрузки
+    ноутбука). Детект таблиц / роутинг / типы документов — в
+    ``pdf_table_engine.py``, ``page_suitability.py``, ``pdf_doc_types.py``.
+    Ноутбук ``pdf_to_html_smart.ipynb`` — исследовательский стенд; runtime
+    от него не зависит.
 
-Пересборка пайплайна из ноутбука (только если правили стенд)::
+Пересборка ``pdf_html_pipeline.py`` из ноутбука (при необходимости)::
 
     python scripts/extract_pipeline.py
 """
@@ -50,6 +53,7 @@ from typing import Any, Iterable
 import pdfplumber
 
 from page_suitability import (
+    DEFAULT_UNMARKED_ROUTING_STRICTNESS,
     REASON_BROKEN_FONTS,
     REASON_IMAGE_ONLY_SCAN,
     REASON_LABELS_RU,
@@ -61,7 +65,7 @@ from pdf_html_pipeline import (
     document_has_broken_fonts,
     finalize_document_html,
 )
-from pdf_table_engine import _suppress_scan_noise
+from pdf_table_engine import suppress_scan_noise
 
 __all__ = [
     "RejectedPage",
@@ -182,6 +186,7 @@ def pdf_to_html(
     *,
     skip_unsuitable: bool = True,
     quiet: bool = True,
+    unmarked_routing_strictness: float = DEFAULT_UNMARKED_ROUTING_STRICTNESS,
 ) -> ConversionResult:
     """
     Конвертирует PDF в HTML постранично и сохраняет результат.
@@ -198,6 +203,13 @@ def pdf_to_html(
         в HTML попадает заглушка, страница попадает в ``rejected_pages``.
     quiet:
         Если True — не печатать служебные сообщения пайплайна в stdout.
+    unmarked_routing_strictness:
+        Жёсткость роутинга по немаркированным (растровым) линиям таблиц, ∈ [0, 1].
+
+        - ``0`` — не отсеивать такие таблицы;
+        - ``1`` — отсеивать любую страницу, где линии брались с растра и есть таблицы;
+        - ``DEFAULT_UNMARKED_ROUTING_STRICTNESS`` (0.5) — текущие пороги +
+          type-policy (как раньше без параметра).
 
     Returns
     -------
@@ -216,7 +228,7 @@ def pdf_to_html(
     if not src.is_file():
         raise FileNotFoundError(f"PDF не найден: {src}")
 
-    _suppress_scan_noise()
+    suppress_scan_noise()
     warnings.filterwarnings("ignore")
 
     suitability_stats = SuitabilityStats()
@@ -239,6 +251,7 @@ def pdf_to_html(
                 pdf_path=str(src),
                 skip_unsuitable=skip_unsuitable,
                 doc_type_fallback=doc_type_fallback,
+                unmarked_routing_strictness=unmarked_routing_strictness,
             )
 
             doc_type = getattr(suitability, "doc_type", None)
@@ -300,7 +313,7 @@ def _call_quiet(quiet: bool, fn, *args, **kwargs):
 
 
 # ---------------------------------------------------------------------------
-# Удобный запуск из командной строки
+# Удобный запуск из командной строки (не публичный сервисный API)
 # ---------------------------------------------------------------------------
 
 
@@ -329,6 +342,15 @@ def _main(argv: Iterable[str] | None = None) -> int:
         action="store_true",
         help="Печать ConversionResult.to_dict() в stdout",
     )
+    parser.add_argument(
+        "--unmarked-strictness",
+        type=float,
+        default=DEFAULT_UNMARKED_ROUTING_STRICTNESS,
+        help=(
+            "Жёсткость роутинга unmarked_table_lines [0..1]; "
+            f"по умолчанию {DEFAULT_UNMARKED_ROUTING_STRICTNESS}"
+        ),
+    )
     args = parser.parse_args(list(argv) if argv is not None else None)
 
     result = pdf_to_html(
@@ -336,6 +358,7 @@ def _main(argv: Iterable[str] | None = None) -> int:
         args.html,
         skip_unsuitable=not args.no_skip,
         quiet=not args.verbose,
+        unmarked_routing_strictness=args.unmarked_strictness,
     )
     if args.json:
         print(json.dumps(result.to_dict(), ensure_ascii=False, indent=2))

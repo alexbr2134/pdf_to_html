@@ -20,6 +20,7 @@ from typing import Any, Callable
 import pdfplumber
 
 from page_suitability import (
+    DEFAULT_UNMARKED_ROUTING_STRICTNESS,
     PageSuitability,
     SuitabilityStats,
     assess_page_suitability,
@@ -31,13 +32,24 @@ from page_suitability import (
 )
 from pdf_doc_types import DocType, detect_doc_type
 from pdf_table_engine import (
-    _suppress_scan_noise,
+    suppress_scan_noise,
     find_tables_smart,
     table_looks_like_prose,
 )
 
 HEADER = "HEADER"
 DATA = "DATA"
+
+
+@dataclass(frozen=True)
+class PipelineConfig:
+    """Именованные пороги пайплайна (без выноса всего в pdf_engine/)."""
+
+    min_visible_cells: int = 2
+
+
+PIPELINE_CONFIG = PipelineConfig()
+MIN_VISIBLE_CELLS = PIPELINE_CONFIG.min_visible_cells
 
 
 # --- notebook cell 0 ---
@@ -623,7 +635,7 @@ def _row_has_tabular_data_pattern(row: list["Cell"]) -> bool:
         c for c in row
         if not getattr(c, "covered", False) and not c.is_empty
     ]
-    if len(visible) < 2:
+    if len(visible) < MIN_VISIBLE_CELLS:
         return False
 
     texts = [(c.text or "").strip() for c in visible]
@@ -2112,12 +2124,34 @@ def _looks_like_column_header(text: str) -> bool:
         return True
     if re.fullmatch(r"доля,?\s*%?", tl, re.I):
         return True
-    if re.search(r"^наименование\b", tl, re.I) and len(t) <= 40:
+    if re.search(r"^наименование\b", tl, re.I) and len(t) <= 48:
         return True
     if "район" in tl and "промысл" in tl:
         return True
     if re.search(r"^наименование\s+вбр", tl, re.I):
         return True
+    # заголовки счёта-фактуры / оплаты
+    if re.search(
+        r"(?i)(?:п/?п|предмет\s+договора|дата\s+оплаты|сумма\s+оплаты|"
+        r"единица\s+измерения|количество|код\s+вида|цена\s*\(|тариф|"
+        r"стоимость|налоговая\s+ставка|примечание)",
+        tl,
+    ) and len(t) <= 64:
+        return True
+    if re.fullmatch(r"№|N|№\s*п/?п", tl):
+        return True
+
+    # подзаголовки СФ/УПД/ТОРГ/КС (2-й уровень шапки)
+    if re.search(
+        r"(?i)условн\w*\s*обознач|национальн|цифро[-\s]*в\w*\s*код|"
+        r"кратк\w*\s*наименов|код\s*по\s*океи|"
+        r"наименов\w*\s*,?\s*характерист|масса\s*брутто|масса\s*нетто|"
+        r"вид\s*упаков|по\s*поряд|выполнено\s*работ|"
+        r"цена\s*за\s*единиц|стоимост\w*,?\s*руб",
+        tl,
+    ) and len(t) <= 96:
+        return True
+
     # короткий заголовок из заглавных / жирных слов
     words = t.split()
     if len(words) <= 4 and len(t) <= 28:
@@ -2401,76 +2435,6 @@ def _cell_font_sig(cell: "Cell") -> tuple | None:
     return Counter(sigs).most_common(1)[0][0]
 
 
-def _looks_like_column_header(text: str) -> bool:
-    """Отдельный заголовок колонки — не склеивать с соседями."""
-
-    t = (text or "").strip()
-    if not t:
-        return False
-    tl = t.lower().replace("\n", " ")
-
-    _EXACT = {
-        "пояснения", "код", "договор", "поступило", "выбыло", "списано",
-        "начислено", "итого", "актив", "пассив", "баланс",
-    }
-    if tl in _EXACT:
-        return True
-    if re.fullmatch(r"код", tl, re.I):
-        return True
-    if re.fullmatch(r"пояснения", tl, re.I):
-        return True
-    if re.fullmatch(r"договор", tl, re.I):
-        return True
-    if re.fullmatch(r"поступило|выбыло|списано|начислено|переоцен", tl, re.I):
-        return True
-    if re.fullmatch(r"на\s+31\s+декабря", tl, re.I):
-        return True
-    if re.fullmatch(r"\d{4}\s*г(?:ода?)?\.?", tl, re.I):
-        return True
-    compact = re.sub(r"\s+", "", tl)
-    if re.fullmatch(r"\d{4}г(?:ода?)?\.?", compact, re.I):
-        return True
-    if re.fullmatch(r"(?:\d\s*){4}\s*г(?:ода?)?\.?", tl, re.I):
-        return True
-    if re.fullmatch(r"доля,?\s*%?", tl, re.I):
-        return True
-    if re.search(r"^наименование\b", tl, re.I) and len(t) <= 48:
-        return True
-    if "район" in tl and "промысл" in tl:
-        return True
-    if re.search(r"^наименование\s+вбр", tl, re.I):
-        return True
-    # заголовки счёта-фактуры / оплаты
-    if re.search(
-        r"(?i)(?:п/?п|предмет\s+договора|дата\s+оплаты|сумма\s+оплаты|"
-        r"единица\s+измерения|количество|код\s+вида|цена\s*\(|тариф|"
-        r"стоимость|налоговая\s+ставка|примечание)",
-        tl,
-    ) and len(t) <= 64:
-        return True
-    if re.fullmatch(r"№|N|№\s*п/?п", tl):
-        return True
-
-    # подзаголовки СФ/УПД/ТОРГ/КС (2-й уровень шапки)
-    if re.search(
-        r"(?i)условн\w*\s*обознач|национальн|цифро[-\s]*в\w*\s*код|"
-        r"кратк\w*\s*наименов|код\s*по\s*океи|"
-        r"наименов\w*\s*,?\s*характерист|масса\s*брутто|масса\s*нетто|"
-        r"вид\s*упаков|по\s*поряд|выполнено\s*работ|"
-        r"цена\s*за\s*единиц|стоимост\w*,?\s*руб",
-        tl,
-    ) and len(t) <= 96:
-        return True
-
-    # короткий заголовок из заглавных / жирных слов
-    words = t.split()
-    if len(words) <= 4 and len(t) <= 28:
-        letters = [ch for ch in t if ch.isalpha()]
-        if letters and sum(1 for ch in letters if ch.isupper()) / len(letters) >= 0.65:
-            return True
-    return False
-
-
 def _should_merge_adjacent_labels(
     a: "Cell",
     b: "Cell",
@@ -2544,7 +2508,7 @@ def _grid_is_vertical_code_stack(grid: list[list["Cell"]]) -> bool:
     pairs = 0
     for row in grid:
         visible = [c for c in row if not getattr(c, "covered", False) and not c.is_empty]
-        if len(visible) < 2:
+        if len(visible) < MIN_VISIBLE_CELLS:
             continue
         value_cols = [c for c in visible if c.col > 0]
         if len(value_cols) >= 2:
@@ -3474,7 +3438,7 @@ def _row_is_table_header_row(row: list["Cell"]) -> bool:
         c for c in row
         if not getattr(c, "covered", False) and (c.text or "").strip()
     ]
-    if len(visible) < 2:
+    if len(visible) < MIN_VISIBLE_CELLS:
         return False
     if any(_looks_like_table_data_value(c.text) for c in visible):
         return False
@@ -3531,7 +3495,7 @@ def _row_is_prose(row: list["Cell"]) -> bool:
         c for c in row
         if not getattr(c, "covered", False) and (c.text or "").strip()
     ]
-    if len(visible) < 2:
+    if len(visible) < MIN_VISIBLE_CELLS:
         return False
     if _row_is_company_data_row(row):
         return False
@@ -3974,6 +3938,7 @@ def build_page_section(
     *,
     skip_unsuitable: bool = True,
     doc_type_fallback=None,
+    unmarked_routing_strictness: float = DEFAULT_UNMARKED_ROUTING_STRICTNESS,
 ) -> tuple[str, PageSuitability]:
     """
     Собирает HTML <section> одной страницы.
@@ -3984,6 +3949,10 @@ def build_page_section(
     Post-check: если линии брались с растра и process_table сделал много
     colspan/rowspan — страница роутится (unmarked_table_lines).
     Для РСБУ крупные таблицы без сложных span не роутятся.
+
+    unmarked_routing_strictness ∈ [0, 1]:
+      0 — не роутить unmarked; 1 — роутить любой raster-vectorized table page;
+      0.5 — текущие пороги + type-policy (дефолт).
     """
     detected = detect_doc_type(
         page, pdf_path=pdf_path, fallback=doc_type_fallback
@@ -4015,6 +3984,7 @@ def build_page_section(
             raster_lines_vectorized=vectorized,
             grids=grids,
             doc_type=doc_type.value,
+            strictness=unmarked_routing_strictness,
         ):
             suitability = merge_page_suitability(
                 suitability,
@@ -4140,7 +4110,7 @@ def _build_page_body_impl(
     if not tables_raw:
         body = page_text_fallback_html(page, render_text_block_html) or ""
         from pdf_doc_types import enrich_page_html_for_doc_type
-        body = enrich_page_html_for_doc_type(doc_type, page, body)
+        body = enrich_page_html_for_doc_type(doc_type, body)
         return body, []
 
     processed: list[tuple[list[list[Cell]], list[str], object, bool]] = []
@@ -4266,7 +4236,7 @@ def _build_page_body_impl(
     if not body.strip() or page_body_needs_prose_fallback(page, body):
         body = page_text_fallback_html(page, render_text_block_html)
     from pdf_doc_types import enrich_page_html_for_doc_type
-    body = enrich_page_html_for_doc_type(doc_type, page, body)
+    body = enrich_page_html_for_doc_type(doc_type, body)
     # grids для post-check роутинга: только не-prose таблицы после process_table
     route_grids = [g for g, _k, _t, as_prose in processed if not as_prose]
     return body, route_grids
@@ -4286,7 +4256,7 @@ def build_page_html(
 # --- notebook cell 35 ---
 
 
-from pdf_table_engine import _suppress_scan_noise
+from pdf_table_engine import suppress_scan_noise
 
 
 def export_samples_to_html(
@@ -4302,7 +4272,7 @@ def export_samples_to_html(
     image-only скан), при skip_unsuitable=True не конвертируются — в HTML
     ставится заглушка; в конце печатается сводка отсева.
     """
-    _suppress_scan_noise()
+    suppress_scan_noise()
 
     samples_dir = Path(samples_dir)
     output_dir = Path(output_dir)
@@ -4471,7 +4441,7 @@ def debug_line_vectorization(
 # --- notebook cell 40 ---
 
 
-from pdf_table_engine import _suppress_scan_noise
+from pdf_table_engine import suppress_scan_noise
 
 
 def regenerate_sample_html(
@@ -4485,7 +4455,7 @@ def regenerate_sample_html(
     filename — имя файла с расширением или без (например «RSBU_12m_2025» или «RSBU_12m_2025.pdf»).
     Возвращает словарь с параметрами генерации.
     """
-    _suppress_scan_noise()
+    suppress_scan_noise()
 
     samples_dir = Path(samples_dir)
     output_dir = Path(output_dir)
@@ -4577,7 +4547,7 @@ def regenerate_sample_html(
 
 
 
-from pdf_table_engine import _suppress_scan_noise
+from pdf_table_engine import suppress_scan_noise
 
 
 def export_tree_to_html(
@@ -4590,7 +4560,7 @@ def export_tree_to_html(
     Рекурсивно: PDF из samples_dir -> HTML в output_dir
     с тем же относительным путём (подпапки сохраняются).
     """
-    _suppress_scan_noise()
+    suppress_scan_noise()
 
     samples_dir = Path(samples_dir)
     output_dir = Path(output_dir)
