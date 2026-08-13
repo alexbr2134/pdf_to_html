@@ -4133,6 +4133,33 @@ def _build_page_body_impl(
                 prose_sections.append(((bbox[1], bbox[0]), section_html))
         processed.append((grid, kinds, table, as_prose))
 
+    body = assemble_page_html(
+        page,
+        processed,
+        prose_sections,
+        nested_code_tables=nested_code_tables,
+        doc_type=doc_type,
+    )
+    route_grids = [g for g, _k, _t, as_prose in processed if not as_prose]
+    return body, route_grids
+
+
+def assemble_page_html(
+    page,
+    processed: list,
+    prose_sections: list,
+    *,
+    nested_code_tables: list | None = None,
+    doc_type=None,
+) -> str:
+    """
+    Собирает HTML body страницы из уже обработанных таблиц + свободного текста.
+
+    Нужна и smart-пайплайну, и ноутбуку Paddle-детекции.
+    ``processed``: (grid, kinds, table, as_prose).
+    ``prose_sections``: ((top, left), html).
+    """
+    nested_code_tables = nested_code_tables or []
     used_keys = mark_table_words_used(
         page,
         [(g, k, t) for g, k, t, _ in processed]
@@ -4236,10 +4263,7 @@ def _build_page_body_impl(
     if not body.strip() or page_body_needs_prose_fallback(page, body):
         body = page_text_fallback_html(page, render_text_block_html)
     from pdf_doc_types import enrich_page_html_for_doc_type
-    body = enrich_page_html_for_doc_type(doc_type, body)
-    # grids для post-check роутинга: только не-prose таблицы после process_table
-    route_grids = [g for g, _k, _t, as_prose in processed if not as_prose]
-    return body, route_grids
+    return enrich_page_html_for_doc_type(doc_type, body)
 
 
 def build_page_html(

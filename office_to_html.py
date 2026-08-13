@@ -15,11 +15,9 @@ from __future__ import annotations
 import contextlib
 import io
 import json
-import shutil
 import time
-from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Any, Iterable
+from typing import Iterable
 
 from office_docx import extract_docx
 from office_html import (
